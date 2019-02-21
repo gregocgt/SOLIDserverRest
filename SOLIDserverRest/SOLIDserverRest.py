@@ -76,8 +76,6 @@ class SOLIDserverRest:
 		#print("URL: {}".format(url))
 
 		#to https communication whithout certificate
-		print('Request version:')
-		print(requests.__version__)
 		requests.urllib3.disable_warnings()
 				
 
