@@ -5,7 +5,7 @@ from SOLIDserverRest import *
 
 print("")
 print("################")
-print("Tests Program")
+print("Tests")
 print("################")
 print("")
 
@@ -19,7 +19,7 @@ print("")
 print("Query parameter's setting")
 print("-------------------")
 print("EXAMPLE: FIXME")
-prametre = {'site_name' : 'toto', 'site_description':'description du site'}
+parameters = {'site_name' : 'toto', 'site_description':'site description'}
 print("-------------------")
 print("")
 
@@ -27,7 +27,7 @@ print("")
 
 print('...')
 
-answerR = testR.query('ip_site_update', prametre)
+answerR = testR.query('ip_site_update', parameters)
 	
 print("")
 print("REPONSE")
