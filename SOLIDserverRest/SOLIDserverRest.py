@@ -75,8 +75,8 @@ class SOLIDserverRest:
 		#print("URL: {}".format(url))
 
 		#to https communication whithout certificate
-		requests.packages.urllib3.disable_warnings()
-		
+		requests.urllib3.disable_warnings()
+				
 
 		try:
 			answer = requests.request(methode, url, headers=self.headers, verify=sslVerify, timeout=2)
