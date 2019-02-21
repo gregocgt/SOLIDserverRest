@@ -20,7 +20,7 @@ class REPONSE:
 	def	__str__(self):
 		return 'REPONSE [ERROR]'
 
-class SDSRestRequest:
+class SOLIDserverRest:
 
 	def __init__(self, host, user, password, debug=False):
 		self.debug = debug
@@ -107,7 +107,7 @@ if __name__ == "__main__":
 	print("         => password = password of the user")
 	print("")
 	print("Object declaration:")
-	print('      your_obj = SDSRestRequest("host", "user", "password")')
+	print('      your_obj = SOLIDserverRest("host", "user", "password")')
 	print("")
 	print("2. Request to SOLIDserver API")
 	print("      You need parameters:")

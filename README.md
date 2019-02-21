@@ -26,7 +26,7 @@ Your object declaration permits to set:
 * password = password of the user
 
 ```
-	your_obj = SDSRestRequest("host", "user", "password")
+	your_obj = SOLIDserverRest("host", "user", "password")
 ```
 
 2. **Request to SOLIDserver API**

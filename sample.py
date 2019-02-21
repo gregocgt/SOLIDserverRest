@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*-coding:Utf-8 -*
 ##########################################################
-from SOLIDserverRest import *
+from SOLIDserverRest.SOLIDserverRest import *
 
 print("")
 print("################")
@@ -11,8 +11,8 @@ print("")
 
 print("Object declaration")
 print("-------------------")
-print('your_obj = SDSRestRequest("host", "user", "password")')
-testR = SDSRestRequest('192.0.2.42','soliduser','solidpass')
+print('your_obj = SOLIDServerRest("host", "user", "password")')
+testR = SOLIDserverRest('192.0.2.42','soliduser','solidpass')
 print("-------------------")
 print("")
 
