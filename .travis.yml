@@ -6,6 +6,8 @@ python:
 virtualenv:
   system_site_packages: false
 
+cache: pip
+
 # command to install dependencies
 before_install:
   - python setup.py sdist
