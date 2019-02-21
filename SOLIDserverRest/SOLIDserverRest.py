@@ -6,7 +6,10 @@
 
 import sys
 import base64
+
 import requests
+requests.require("requests==2.21.0")
+
 import urllib
 
 from mapper import *
