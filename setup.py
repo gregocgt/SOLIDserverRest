@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='SOLIDserverRest',
-    version='1.01',
+    version='1.02',
     description='The SOLIDserverRest is a library to drive EfficientIP API',
     long_description="SOLIDserverRest: This 'SOLIDserverRest' allows to easily interact with SOLIDserver's REST API. It allows managing all IPAM objects through CRUD operations.",
     long_description_content_type="text/markdown",

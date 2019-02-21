@@ -3,9 +3,11 @@ python:
   - "2.7"
   - "3.7"
 # command to install dependencies
+before_install:
+  - python setup.py sdist
 install:
   - pip install -r requirements.txt
-  - pip install .
+  - pip install ./dist/*
 # command to run tests
 script:
   - ./test.py
