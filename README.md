@@ -1,4 +1,4 @@
-# python-lib-efficientIP
+# SOLIDserverRest
 
 This 'SOLIDserverRest' allows to easily interact with [SOLIDserver](http://www.efficientip.com/products/solidserver/)'s REST API.
 It allows managing all IPAM objects through CRUD operations.
