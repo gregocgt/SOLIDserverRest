@@ -12,7 +12,7 @@ before_install:
 install:
   - pip install -r requirements.txt
   - pip install ./dist/*
-after_install:
+script:
   - python test.py
 
 # command to run tests
