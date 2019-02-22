@@ -67,4 +67,4 @@ methodeMapper = {
 
 ####################################################
 if __name__ == "__main__":
-    print ('Please, you must use SOLIDserverRest.py script!')
+    print('Please, you must use SOLIDserverRest.py script!')
