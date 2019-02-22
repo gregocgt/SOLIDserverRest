@@ -10,7 +10,11 @@ import base64
 import requests
 import urllib
 
-from mapper import *
+#Import management
+if sys.version_info[0] == 3:
+	from .mapper import *
+else:
+	from mapper import *
 
 ################################################################################
 class REPONSE:
