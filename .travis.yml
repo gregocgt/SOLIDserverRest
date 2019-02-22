@@ -1,24 +1,25 @@
 language: python
+env:
+  global:
+    secure: pVkPQWVwF/zfRkrDfbIG0NHlpU2yBU2lHeUDLhO0X7UkFBXwal3HfVtY0qJkTy6RK8KCcqD+To/L+c0376rWUjwSTtlVdgHmLaRRKz0u7+47Rs00L9cI4dwtYHUwAtgLnFby1I7JKGULvuLe0VoRVah7Ts0MOCwwG5AZI2FaPwtPl7bCPmRl9Ao/v1TcD0kBB1BgAlprLJwrlHdUPXQZo9JelGXwx2yM4zCjGQojZhy81r1aKprKzKsaNrFQom1Yd+RewBZW5U7MjL+loIkodbfToklm/Dx7abw8obIV/Q371hJhDbIJh8ftGcMogPvBOeEBFaYiQg2oQlIwNh4g76kv9b7xAOBOG1KKyGXlKglYKzSFA//I9C3Y18STqEZeiYOfJ+P7ACAnHkOUF5hhcpo+G8nGhgT8e7u8g9yeMUgJ+HGmOnN5Q+Z7TIHtVUoNqDjY5h7V9M0Msa1UkVTXAKJqm0Y9L83Qouf4tZCwpKTLD+cPoaMaae7eh+iZegNWGayHHGnSqCyqMnQLfYO861lz1anbUuLA9At5pFxoI2xOc87v2r+NWjIkvyntqOlXim8ftoWKJEAnbU+PVb2vLW0W+tF8e2Wug8QO8RYeFUiKP9qNRx/NM5IXzEfbilxH2PYg4/ABgVGeFEXefjYPHdRabOZWCZVsakCGBMnCpcM=
 python:
-  - "2.7"
-  - "3.5"
-  - "3.6"
-
+- '2.7'
+- '3.5'
+- '3.6'
 virtualenv:
   system_site_packages: false
-
 cache: pip
-
-# command to install dependencies
 before_install:
-  - python setup.py sdist
-  - pip install pycodestyle
+- python setup.py sdist
+- pip install pycodestyle
 install:
-  - pip install -r requirements.txt
-  - pip install ./dist/*
+- pip install -r requirements.txt
+- pip install ./dist/*
+- pip install codecov
+- pip install pytest pytest-cov
 script:
-  - pycodestyle ./SOLIDserverRest/*.py
-  - python test.py
-
-# command to run tests
-#script:
+- pycodestyle ./SOLIDserverRest/*.py
+- python test.py
+- pytest --cov=./
+after_success:
+  - codecov
