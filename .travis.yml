@@ -20,6 +20,7 @@ install:
 script:
 - pycodestyle ./SOLIDserverRest/*.py
 - python test.py
+- coverage run ./SOLIDserverRest/*.py
 - pytest --cov=./
 after_success:
   - codecov
