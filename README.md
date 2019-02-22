@@ -3,6 +3,7 @@
 [![Updates](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/shield.svg)](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/)
 [![Python 3](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/python-3-shield.svg)](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/)
 
+[![Codecov branch](hhttps://codecov.io/gh/gregocgt/SOLIDserverRest/branch/next-version/graph/badge.svg)](https://codecov.io/gh/gregocgt/SOLIDserverRest)
 
 # SOLIDserverRest
 
