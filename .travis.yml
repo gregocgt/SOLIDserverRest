@@ -11,10 +11,11 @@ virtualenv:
 cache: pip
 before_install:
 - python setup.py sdist
-- pip install pycodestyle
+- pip install --upgrade pip
 install:
 - pip install -r requirements.txt
 - pip install ./dist/*
+- pip install pycodestyle
 - pip install codecov
 - pip install pytest pytest-cov
 script:
