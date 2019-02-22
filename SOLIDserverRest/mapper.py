@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*-coding:Utf-8 -*
+##############################################
 serviceMapper = {
         'ip_site_add' : 'ip_site_add',
         'ip_site_update' : 'ip_site_add',
