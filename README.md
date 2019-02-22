@@ -1,8 +1,9 @@
 [![Build status](https://travis-ci.com/gregocgt/SOLIDserverRest.svg)](https://https://travis-ci.com/gregocgt/SOLIDserverRest)
-[![License](https://img.shields.io/badge/License-BSD%202--Clause-green.svg)](https://opensource.org/licenses/BSD-2-Clause)
+[![License](https://img.shields.io/badge/License-BSD%202--Clause-blue.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![Updates](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/shield.svg)](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/)
 [![Python 3](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/python-3-shield.svg)](https://pyup.io/repos/github/gregocgt/SOLIDserverRest/)
-
+[![Codecov branch](https://codecov.io/gh/gregocgt/SOLIDserverRest/branch/next-version/graph/badge.svg)](https://codecov.io/gh/gregocgt/SOLIDserverRest)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/SOLIDserverRest.svg)
 
 # SOLIDserverRest
 

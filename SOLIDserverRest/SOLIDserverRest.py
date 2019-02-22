@@ -100,8 +100,7 @@ class SOLIDserverRest:
 #########################################################################
 # Hors Lib
 ##########################################################################
-if __name__ == "__main__":
-
+def usage():
     print("")
     print("#####################################")
     print("# Module to request SOLIDServer API #")
@@ -136,3 +135,7 @@ if __name__ == "__main__":
     print("      print(rest_answer.content) => Answer core from SOLIDserver")
     print("                                    API set in the object")
     print("")
+
+
+if __name__ == "__main__":
+    usage()
