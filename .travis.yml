@@ -23,6 +23,7 @@ script:
 - pycodestyle ./SOLIDserverRest/*.py
 - python test.py
 - coverage run ./SOLIDserverRest/*.py
-- pytest --pyargs SOLIDserverRest
+- pytest --cov=./
+#- pytest --pyargs SOLIDserverRest
 after_success:
   - codecov
