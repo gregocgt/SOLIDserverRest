@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*-coding:Utf-8 -*
 ##########################################################
-# Request example: http://<SOLIDserver-IP>/rest/<service>?<param> [param=URLencode(value)]
+# Request example:
+# http://<SOLIDserver-IP>/rest/<service>?<param> [param=URLencode(value)]
 ###########################################################
 
 import sys
@@ -80,10 +81,6 @@ class SOLIDserverRest:
         self.last_url = "{}{}".format(service, params).strip()
         url = "{}{}".format(self.prefixUrl, self.last_url)
 
-        # displaying info to debug
-        #print("Methode: {}".format(methode))
-        #print("URL: {}".format(url))
-
         # to https communication whithout certificate
         requests.urllib3.disable_warnings()
 
@@ -122,16 +119,20 @@ if __name__ == "__main__":
     print('      your_obj = SOLIDserverRest("host", "user", "password")')
     print("")
     print("2. Request to SOLIDserver API")
-    print("      You need parameters:")
-    print("         => methode = choose your methode in the list below")
-    print("         => parameters = Python dico with parameters you want to use")
-    print("         => sslVerify = this option permits to check your server SSL certificate. To check you must set: sslVerify=True")
+    print("    You need parameters:")
+    print("       => methode = choose your methode in the list below")
+    print("       => parameters = Python dico with parameters you want to use")
+    print("       => sslVerify = this option permits to check your server SSL")
+    print("                      certificate.")
+    print("                      To check you must set: sslVerify=True")
     print("")
     print("Query to SOLIDserver API")
-    print('      rest_answer = your_obj.query("methode", "parameters", sslVerify=False)')
+    print('rest_answer=your_obj.query("methode","parameters",sslVerify=False)')
     print("")
     print("3. Keep answer")
     print("      print(rest_answer) => object name")
-    print("      print(rest_answer.status_code) => current http answer code set in the object")
-    print("      print(rest_answer.content) => Answer core from SOLIDserver API set in the object")
+    print("      print(rest_answer.status_code) => current http answer code")
+    print("                                        set in the object")
+    print("      print(rest_answer.content) => Answer core from SOLIDserver")
+    print("                                    API set in the object")
     print("")
