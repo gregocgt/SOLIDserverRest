@@ -64,7 +64,3 @@ methodeMapper = {
     'info': 'GET',
     'delete': "DELETE",
 }
-
-####################################################
-if __name__ == "__main__":
-    print('Please, you must use SOLIDserverRest.py script!')
