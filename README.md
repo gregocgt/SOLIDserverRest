@@ -1,3 +1,5 @@
+[![Build status](https://travis-ci.com/gregocgt/SOLIDserverRest.svg)](https://https://travis-ci.com/gregocgt/SOLIDserverRest)
+
 # SOLIDserverRest
 
 This 'SOLIDserverRest' allows to easily interact with [SOLIDserver](http://www.efficientip.com/products/solidserver/)'s REST API.
