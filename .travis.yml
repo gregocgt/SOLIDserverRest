@@ -12,10 +12,12 @@ cache: pip
 # command to install dependencies
 before_install:
   - python setup.py sdist
+  - pip install pycodestyle
 install:
   - pip install -r requirements.txt
   - pip install ./dist/*
 script:
+  - pycodestyle ./SOLIDserverRest/*.py
   - python test.py
 
 # command to run tests
