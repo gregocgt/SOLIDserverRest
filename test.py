@@ -8,3 +8,4 @@ def test_answer():
     parameters = {'site_name': 'toto', 'site_description': 'site description'}
     answerR = testR.query('ip_site_update', parameters)
     answerR = testR.query('ip_site_delete', parameters)
+    usage()
