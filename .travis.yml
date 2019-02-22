@@ -17,7 +17,8 @@ install:
 - pip install ./dist/*
 - pip install pycodestyle
 - pip install codecov
-- pip install pytest pytest-cov
+- pip install --upgrade pytest 
+- pip install pytest-cov
 script:
 - pycodestyle ./SOLIDserverRest/*.py
 - python test.py
