@@ -26,7 +26,7 @@ setup(
     license='BSD 2',
     packages=['SOLIDserverRest'],
     zip_safe=False,
-    python_requires=">=3.6",
+    python_requires=">=3.5, 2.7",
     py_modules=['check_python_versions'],
     entry_points={
         'console_scripts': [
