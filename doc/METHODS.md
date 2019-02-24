@@ -7,14 +7,14 @@ Each available method rely on the following naming convention for intuitive usag
 
 ### Methode list
 * **[ip_site_add](ip_site_add.md)** => This service allows to add an IP address Space.
-* **ip_site_update** => This service allows to update an IP address Space.
-* **ip_site_count** => This service returns the number of IP address Spaces matching optional condition(s).
-* **ip_site_list** => This service returns a list of IP address Spaces matching optional condition(s).
-* **ip_site_info** => This service returns information about a specific IP address Space.
-* **ip_site_delete** => This service allows to delete a specific IP address Space.
-* **ip_subnet_add** => This service allows to add an IPv4 Network of type Subnet or Block.
-* **ip_subnet_update** => This service allows to update an IPv4 Network of type Subnet or Block.
-* **ip_subnet_count** => This service returns the number of IPv4 Networks matching optional condition(s).
+* **[ip_site_update](ip_site_update.md)** => This service allows to update an IP address Space.
+* **[ip_site_count](ip_site_count.md)** => This service returns the number of IP address Spaces matching optional condition(s).
+* **[ip_site_list](ip_site_list.md)** => This service returns a list of IP address Spaces matching optional condition(s).
+* **[ip_site_info](ip_site_info)** => This service returns information about a specific IP address Space.
+* **[ip_site_delete](ip_site_delete)** => This service allows to delete a specific IP address Space.
+* **[ip_subnet_add](ip_subnet_add)** => This service allows to add an IPv4 Network of type Subnet or Block.
+* **[ip_subnet_update](ip_subnet_update)** => This service allows to update an IPv4 Network of type Subnet or Block.
+* **[ip_subnet_count](ip_subnet_count)** => This service returns the number of IPv4 Networks matching optional condition(s).
 * **ip_subnet_list** => This service returns a list of IPv4 Networks matching optional condition(s).
 * **ip_subnet_info** => This service returns information about a specific IPv4 Network.
 * **ip_subnet_delete** => This service allows to delete a specific IPv4 Network.
