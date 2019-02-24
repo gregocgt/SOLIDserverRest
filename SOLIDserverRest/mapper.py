@@ -1,7 +1,14 @@
 #!/usr/bin/python
 # -*-coding:Utf-8 -*
 ##############################################
-serviceMapper = {
+
+"""
+set of values used to map calls from names to API endpoints
+and method to use in REST calls
+"""
+__all__ = ["SERVICE_MAPPER", "METHOD_MAPPER"]
+
+SERVICE_MAPPER = {
     'ip_site_add': 'ip_site_add',
     'ip_site_update': 'ip_site_add',
     'ip_site_count': 'ip_site_count',
@@ -56,11 +63,12 @@ serviceMapper = {
     'ip_alias6_delete': 'ip6_alias_delete',
 }
 
-methodeMapper = {
+METHOD_MAPPER = {
     'add': 'POST',
     'update': 'PUT',
     'count': 'GET',
     'list': 'GET',
     'info': 'GET',
     'delete': "DELETE",
+    'find_free': "OPTIONS"
 }
