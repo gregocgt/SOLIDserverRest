@@ -1,12 +1,12 @@
 # Method - ip_subnet_count
-Description
+## Description
 
 	This service returns the number of IPv4 Networks matching optional condition(s).
 
-Available Input Parameters :
+## Available Input Parameters :
 
 	* where - Can be used to filter the result using any output field in an SQL fashion.
 
-Available Output Fields :
+## Available Output Fields :
 
 	* total

@@ -1,17 +1,25 @@
-# Method - ip_site_delete
+# Method - ip_alias6_add
 ## Description
 
-	This service allows to delete a specific IP address Space.
+	This service allows to associate an Alias of type A or CNAME to an IPv4 Address.
 
 ## Mandatory Parameters
 
-	(site_id | site_name)
+	(ip6_name + (ip6_id | (hostaddr + (site_id | site_name))))
 
 ## Available Input Parameters :
 
 	* site_id - Space ID
 	* site_name - Space name
+	* ip6_id - IP6 address ID
+	* ip6_name_id - IP6 address alias ID
+	* ip6_name - IP6 address alias
+	* name - IP6 address alias
+	* ip6_name_type - IP name type
+	* ip6_addr - IP6 address
+	* hostaddr - IP6 address
 	* keep_previous_param - Params to not overwrite for update
+	* add_flag - new_edit/new_only/edit_only flag
 	* no_rule_exec - Dont execute rules
 	* only_rule_exec - Only execute rules
 	* additional_parameters - Additional parameters passed to rules

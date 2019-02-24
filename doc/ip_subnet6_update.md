@@ -1,11 +1,11 @@
-# Method - ip_subnet_update
+# Method - ip_subnet6_update
 ## Description
 
-	This service allows to update an IPv4 Network of type Subnet or Block.
+	This service allows to update an IPv6 Network of type Subnet or Block.
 
 ## Mandatory Parameters
 
-	(subnet_id | (subnet_addr + (subnet_end_addr | subnet_size | subnet_mask | subnet_prefix) + (site_id | site_name | parent_subnet_id)))
+	(subnet6_id | (subnet6_addr + (subnet6_end_addr | subnet6_prefix) + (site_id | site_name | parent_subnet6_id)))
 
 ## Available Input Parameters :
 
@@ -13,25 +13,23 @@
 	* site_name - Space name
 	* vlsm_site_id - VLSM space ID
 	* vlsm_site_name - VLSM space name
-	* subnet_id - Subnet ID
-	* subnet_name - Subnet name
-	* subnet_addr - Subnet start IP address
-	* subnet_end_addr - Subnet end IP address
-	* subnet_size - Subnet size
-	* subnet_mask - Subnet mask
-	* subnet_prefix - Subnet prefix
+	* subnet6_id - Subnet6 ID
+	* subnet6_name - Subnet6 name
+	* subnet6_addr - Subnet6 start IP address
+	* subnet6_end_addr - Subnet6 end IP address
+	* subnet6_prefix - Subnet6 prefix
 	* subnet_level - Subnet level
-	* parent_subnet_id - Parent subnet id
+	* parent_subnet6_id - Parent subnet6 id
 	* allow_tree_reparenting - Allow Tree Reparenting
 	* relative_position - Relative position to a space
 	* use_reversed_relative_position - Use the reversed relative position (start by the end)
-	* subnet_class_name - Subnet class name
-	* network_class_parameters - Network class parameters
-	* subnet_class_parameters - Subnet class parameters
-	* subnet_class_parameters_properties - Subnet class parameters properties
-	* permit_invalid - Permit invalid (not a real subnet/allow overlap)
+	* subnet6_class_name - Subnet class name
+	* network6_class_parameters - Network class parameters
+	* subnet6_class_parameters - Subnet class parameters
+	* subnet6_class_parameters_properties - Subnet class parameters properties
+	* permit_invalid - Permit invalid (not a real subnet6/allow overlap)
 	* permit_overlap - Permit overlap (obsolete)
-	* permit_no_block - Allow creating subnet without block
+	* permit_no_block6 - Allow creating subnet6 without block6
 	* changed_waiting_state - Changed waiting state (internal)
 	* is_terminal - Subnet is terminal
 	* vlmvlan_id - Subnet VLAN ID
@@ -41,7 +39,7 @@
 	* keep_previous_param - Params to not overwrite for update
 	* add_flag - new_edit/new_only/edit_only flag
 	* class_parameters_to_delete - Class parameters to delete
-	* network_class_parameters_properties - Class parameters properties
+	* network6_class_parameters_properties - Class parameters properties
 	* no_rule_exec - Dont execute rules
 	* only_rule_exec - Only execute rules
 	* additional_parameters - Additional parameters passed to rules

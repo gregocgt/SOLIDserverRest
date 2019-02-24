@@ -1,26 +1,36 @@
-# Method - ip_site_add
+# Method - ip_address_add
 ## Description
 
-	This service allows to add an IP address Space.
+	This service allows to add an IPv4 Address.
 
 ## Mandatory Parameters
 
-	site_name
+	(hostaddr + (site_id | site_name))
 
 ## Available Input Parameters :
 
 	* site_id - Space ID
 	* site_name - Space name
-	* site_description - Space description
-	* parent_site_id - Space parent ID
-	* parent_site_name - Space parent name
-	* site_class_name - Space class name
-	* site_class_parameters - Space class parameters
-	* site_is_template - Space is a template
+	* ip_id - IP address ID
+	* name - IP address name
+	* ip_name - IP address name
+	* mac_addr - IP address MAC address
+	* ip_addr - IP address
+	* hostaddr - IP address
+	* ip_class_name - IP address class name
+	* ip_class_parameters - IP address class parameters
+	* hostdev_id - Device ID
+	* hostiface_id - Interface ID
+	* iplport_id - NetChange port ID
+	* last_info - Information about the last call of the service
+	* dhcphost_id - DHCP Static ID
+	* dhcplease_id - DHCP Lease ID
+	* check - Launch service in read only
+	* check_is_dhcp_ip - Check if the IP is valid for DHCP
 	* keep_previous_param - Params to not overwrite for update
 	* add_flag - new_edit/new_only/edit_only flag
 	* class_parameters_to_delete - Class parameters to delete
-	* site_class_parameters_properties - Class parameters properties
+	* ip_class_parameters_properties - Class parameters properties
 	* no_rule_exec - Dont execute rules
 	* only_rule_exec - Only execute rules
 	* additional_parameters - Additional parameters passed to rules

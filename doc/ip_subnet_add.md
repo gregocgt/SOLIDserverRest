@@ -1,13 +1,13 @@
 # Method - ip_subnet_add
-Description
+## Description
 
 	This service allows to add an IPv4 Network of type Subnet or Block.
 
-Mandatory Parameters
+## Mandatory Parameters
 
 	(subnet_addr + (subnet_end_addr | subnet_size | subnet_mask | subnet_prefix) + (site_id | site_name | parent_subnet_id))
 
-Available Input Parameters :
+## Available Input Parameters :
 
 	* site_id - Space ID
 	* site_name - Space name
@@ -46,7 +46,7 @@ Available Input Parameters :
 	* only_rule_exec - Only execute rules
 	* additional_parameters - Additional parameters passed to rules
 
-Available Output Fields :
+## Available Output Fields :
 
 	* errno - ID of the error
 	* errmsg - Error message

@@ -1,13 +1,13 @@
-### Method - ip_site_update
-Description
+# Method - ip_site_update
+## Description
 
 	This service allows to update an IP address Space.
 
-Mandatory Parameters
+## Mandatory Parameters
 
 	(site_id | site_name)
 
-Available Input Parameters :
+## Available Input Parameters :
 
 	* site_id - Space ID
 	* site_name - Space name
@@ -25,7 +25,7 @@ Available Input Parameters :
 	* only_rule_exec - Only execute rules
 	* additional_parameters - Additional parameters passed to rules
 
-Available Output Fields :
+## Available Output Fields :
 
 	* errno - ID of the error
 	* errmsg - Error message

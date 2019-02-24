@@ -1,16 +1,23 @@
-# Method - ip_site_delete
+# Method - ip_alias6_delete
 ## Description
 
-	This service allows to delete a specific IP address Space.
+	This service allows to remove an Alias associated to an IPv6 Address.
 
 ## Mandatory Parameters
 
-	(site_id | site_name)
+	(ip6_name_id | (ip6_name + (ip6_id | (hostaddr + (site_id | site_name)))))
 
 ## Available Input Parameters :
 
 	* site_id - Space ID
 	* site_name - Space name
+	* ip6_id - IP6 address ID
+	* ip6_name_id - IP6 address alias ID
+	* ip6_name - IP6 address alias
+	* ip6_name_type - IP name type
+	* ip6_addr - IP6 address
+	* hostaddr - IP6 address
+	* old_ip6 - Old IP address name
 	* keep_previous_param - Params to not overwrite for update
 	* no_rule_exec - Dont execute rules
 	* only_rule_exec - Only execute rules

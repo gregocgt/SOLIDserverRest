@@ -1,7 +1,7 @@
-# Method - ip_site_count
+# Method - ip_address_count
 ## Description
 
-	This service returns the number of IP address Spaces matching optional condition(s).
+	This service returns the number of IPv4 Addresses matching optional condition(s).
 
 ## Available Input Parameters :
 
