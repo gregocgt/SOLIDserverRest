@@ -7,12 +7,12 @@
 
 # SOLIDserverRest
 
-This 'SOLIDserverRest' allows to easily interact with [SOLIDserver](http://www.efficientip.com/products/solidserver/)'s REST API.
+This 'SOLIDserverRest' allows to easily interact with [SOLIDserver](https://www.efficientip.com/products/solidserver/)'s REST API.
 It allows managing all IPAM objects through CRUD operations.
 
 * ***Free software***: BSD2 License
 
-This 'SOLIDserverRest' is compatible with [SOLIDserver](http://www.efficientip.com/products/solidserver/) version 6.0.1P3 and higher.
+This 'SOLIDserverRest' is compatible with [SOLIDserver](https://www.efficientip.com/products/solidserver/) version 6.0.1P3 and higher.
 
 # Install
 Install 'SOLIDserverRest' using pip:
@@ -25,185 +25,58 @@ Install 'SOLIDserverRest' using pip:
 # Usage
 ## Using the SOLIDserverRest object
 
-1. **Declare object**
+1. **Declare endpoint API point**
+Set the API endpoint you want to talk with through API. Could use an IP address
+(v4 or v6) or a host name
+* host = IP address of the SOLIDserver server
+```
+con = SOLIDserverRest("fqdn_host.org")
+```
 
-Your object declaration permits to set:
-* host = IP adresse of the SOLIDserver server
+2. **Specify connection method**
+Only native connection is supported for this version, using SSD default method
+and providing authentication through headers in the requests with information
+encoded in base64
+
 * user = user who want to use
 * password = password of the user
 
-```
-	your_obj = SOLIDserverRest("host", "user", "password")
+```python
+	con.use_native_ssd(user="apiuser", password="apipwd")
 ```
 
-2. **Request to SOLIDserver API**
+3. **Request to SOLIDserver API**
 
 You need parameters:
-* methode = choose your methode in the list below
+* method = choose your method in the list below
 * parameters = Python dico with parameters you want to use
-* sslVerify = this option permits to check your server SSL certificate. To check you must set: sslVerify=True
-```
-	rest_answer = your_obj.query("methode", "parameters", sslVerify=False)
+* ssl_verify = this option permits to check your server SSL certificate.
+To check the certificate, you must set ssl_verify=True
+```python
+	rest_answer = con.query("method", "parameters", ssl_verify=True)
 ```
 
-3. **Keep answer**
+4. **Analyze answer**
 
 * rest_answer => object name
 * rest_answer.status_code => current http answer code set in the object
 * rest_answer.content => Answer core from SOLIDserver API set in the object
 
-Exemple to  use:
-```
+Example:
+```python
 	print(rest_answer)
 	print(rest_answer.status_code)
 	print(rest_answer.content)
 ```
 
-## Methods Naming Convention
-Each available method rely on the following naming convention for intuitive usage :
+# Methods that could be used
+More information about supported methods in the [specific document](docs/METHODS.md)
 
-```
-	<module>_<object>_<action>
-```
-
-### Methode list
-* **ip_site_add** => This service allows to add an IP address Space.
-* **ip_site_update** => This service allows to update an IP address Space.
-* **ip_site_count** => This service returns the number of IP address Spaces matching optional condition(s).
-* **ip_site_list** => This service returns a list of IP address Spaces matching optional condition(s).
-* **ip_site_info** => This service returns information about a specific IP address Space.
-* **ip_site_delete** => This service allows to delete a specific IP address Space.
-* **ip_subnet_add** => This service allows to add an IPv4 Network of type Subnet or Block.
-* **ip_subnet_update** => This service allows to update an IPv4 Network of type Subnet or Block.
-* **ip_subnet_count** => This service returns the number of IPv4 Networks matching optional condition(s).
-* **ip_subnet_list** => This service returns a list of IPv4 Networks matching optional condition(s).
-* **ip_subnet_info** => This service returns information about a specific IPv4 Network.
-* **ip_subnet_delete** => This service allows to delete a specific IPv4 Network.
-* **ip_subnet6_add** => This service allows to add an IPv6 Network of type Subnet or Block.
-* **ip_subnet6_update** => This service allows to update an IPv6 Network of type Subnet or Block.
-* **ip_subnet6_count** => This service returns the number of IPv6 Networks matching optional condition(s).
-* **ip_subnet6_list** => This service returns a list of IPv6 Networks matching optional condition(s).
-* **ip_subnet6_info** => This service returns information about a specific IPv6 Network.
-* **ip_subnet6_delete** => This service allows to delete a specific IPv6 Network.
-* **ip_pool_add** => This service allows to add an IPv4 Address Pool.
-* **ip_pool_update** => This service allows to update an IPv4 Address Pool.
-* **ip_pool_count** => This service returns the number of IPv4 Address Pools matching optional condition(s).
-* **ip_pool_list** => This service returns a list of IPv4 Address Pools matching optional condition(s).
-* **ip_pool_info** => This service returns information about a specific IPv4 Address Pool.
-* **ip_pool_delete** => This service allows to delete a specific IPv4 Address Pool.
-* **ip_pool6_add** => This service allows to add an IPv6 Address Pool.
-* **ip_pool6_update** => This service allows to update an IPv6 Address Pool.
-* **ip_pool6_count** => This service returns the number of IPv6 Address Pools matching optional condition(s).
-* **ip_pool6_list** => This service returns a list of IPv6 Address Pools matching optional condition(s).
-* **ip_pool6_info** => This service returns information about a specific IPv6 Address Pool.
-* **ip_pool6_delete** => This service allows to delete a specific IPv6 Address Pool.
-* **ip_address_add** => This service allows to add an IPv4 Address.
-* **ip_address_update** => This service allows to update an IPv4 Address.
-* **ip_address_count** => This service returns the number of IPv4 Addresses matching optional condition(s).
-* **ip_address_list** => This service returns a list of IPv4 Addresses matching optional condition(s).
-* **ip_address_info** => This service returns information about a specific IPv4 Address.
-* **ip_address_delete** => This service allows to delete a specific IPv4 Address.
-* **ip_address6_add** => This service allows to add an IPv6 Address
-* **ip_address6_update** => This service allows to update an IPv6 Address
-* **ip_address6_count** => This service returns the number of IPv6 Addresses matching optional condition(s).
-* **ip_address6_list** => This service returns a list of IPv6 Addresses matching optional condition(s).
-* **ip_address6_info** => This service returns information about a specific IPv6 Address.
-* **ip_address6_delete** => This service allows to delete a specific IPv6 Address.
-* **ip_alias_add** => This service allows to associate an Alias of type A or CNAME to an IPv4 Address.
-* **ip_alias_list** => This service returns the list of an IPv4 Address\* ** associated Aliases.
-* **ip_alias_delete** => This service allows to remove an Alias associated to an IPv4 Address.
-* **ip_alias6_add** => This service allows to associate an Alias of type A or CNAME to an IPv4 Address.
-* **ip_alias6_list** => This service returns the list of an IPv6 Address\* ** associated Aliases.
-* **ip_alias6_delete** => This service allows to remove an Alias associated to an IPv6 Address.
-
-Supported modules are :
-
+## Supported SSD modules are:
 -ip (IPAM - IP Address Management)
 
-## Mandatory Parameters
-Some methods require specific parameters combination. These parameters are listed in the method list below in the following format :
-
-```
-	(<required parameter #1> + (<required parameter #2>) | <required parameter #3>)
-```
-
-This means that you need to provide :
-```
-	<required parameter #1> and <required parameter #2>
-```
-or
-```
-	<required parameter #1> and <required parameter #3>
-```
-
-This parameters must be provided through a hash :
-
-```
-	puts sdsapi.ip_site_list(limit: 128, offset: 0, where: "site_name like '%test%'").body
-```
-
-## Filtering the result
-Some methods allow to filter their output result using a WHERE or other parameters.
-
-This clause can be applied on any output field combination using an SQL ANSI style clause.
-
-### WHERE
-```
-	{"WHERE":"name LIKE 'eip-%' and time_to_expire<=3600"}
-```
-
-### ORDER BY
-```
-	{"ORDERBY":"alias_name, ip_name_type"}
-```
-
-### LIMIT / OFFSET
-```
-	{"LIMIT" : "100", "OFFSET" : "10"}
-```
 
 
-
-## METHODE LIST
-
-### Method - ip_site_add
-Description
-
-	This service allows to add an IP address Space.
-
-Mandatory Parameters
-
-	site_name
-
-Available Input Parameters :
-
-	* site_id - Space ID
-	* site_name - Space name
-	* site_description - Space description
-	* parent_site_id - Space parent ID
-	* parent_site_name - Space parent name
-	* site_class_name - Space class name
-	* site_class_parameters - Space class parameters
-	* site_is_template - Space is a template
-	* keep_previous_param - Params to not overwrite for update
-	* add_flag - new_edit/new_only/edit_only flag
-	* class_parameters_to_delete - Class parameters to delete
-	* site_class_parameters_properties - Class parameters properties
-	* no_rule_exec - Dont execute rules
-	* only_rule_exec - Only execute rules
-	* additional_parameters - Additional parameters passed to rules
-
-Available Output Fields :
-
-	* errno - ID of the error
-	* errmsg - Error message
-	* msg - Message, information about service
-	* severity - severity of the error
-	* parameters - Missing parameters
-	* param_format - format of the incorrect parameter
-	* param_value - value of the incorrect parameter
-	* param_name - name of the incorrect parameter
-	* ret_oid - Return oid
 
 ### Method - ip_site_update
 Description
