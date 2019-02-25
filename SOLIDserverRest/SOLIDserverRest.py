@@ -29,6 +29,7 @@ __all__ = ["SOLIDserverRest"]
 
 ##########################################################################
 
+
 class SOLIDserverRest:
     """ main SSD class """
     CNX_NATIVE = 1

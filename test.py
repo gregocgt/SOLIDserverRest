@@ -2,6 +2,7 @@
 # -*-coding:Utf-8 -*
 ##########################################################
 from SOLIDserverRest.SOLIDserverRest import *
+from SOLIDserverRest.Exception import *
 
 def test_answer():
     testR = SOLIDserverRest('192.0.2.42')
