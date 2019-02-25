@@ -14,15 +14,14 @@ before_install:
 - pip install --upgrade pip
 install:
 - pip install -r requirements.txt
+- pip install -r requirements-dev.txt
 - pip install ./dist/*
-- pip install pycodestyle
-- pip install codecov
-- pip install --upgrade pytest 
+- pip install --upgrade pytest
 - pip install pytest-cov
 script:
 - pycodestyle ./SOLIDserverRest/*.py
 - python test.py
 - coverage run ./SOLIDserverRest/*.py
-- pytest --cov=./SOLIDserverRest test.py
+- TEST_SERVER=FAKE pytest --cov=./SOLIDserverRest
 after_success:
   - codecov

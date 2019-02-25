@@ -13,6 +13,12 @@ SSD_HOST = "192.168.56.254"
 SSD_APIUSER = "api"
 SSD_APIPWD = "admin"
 
+# if the test is ran without server, set SERVER=FAKE
+if "TEST_SERVER" in os.environ:
+    env_standalone = os.environ["TEST_SERVER"]
+else:
+    env_standalone = "REAL"
+
 
 def test_setup_init():
     """  simple connection creation """
@@ -54,24 +60,48 @@ def test_native_simple_call():
     con = SOLIDserverRest(SSD_HOST)
     con.use_native_ssd(user=SSD_APIUSER, password=SSD_APIPWD)
 
-    answer = con.query('ip_site_count',
-                       None,
-                       ssl_verify=False,
-                       timeout=1)
+    if env_standalone == "REAL":
+        try:
+            answer = con.query('ip_site_count',
+                               None,
+                               ssl_verify=False,
+                               timeout=1)
+        except SSDRequestError:
+            assert False, "query failed in native call"
 
-    if answer.status_code != 200:
-        assert False, "native call failed"
+        if answer.status_code != 200:
+            assert False, "native call failed"
+    else:
+        # FAKE server, excptecting an error
+        try:
+            answer = con.query('ip_site_count',
+                               None,
+                               ssl_verify=False,
+                               timeout=1)
+        except SSDRequestError:
+            None
+
+
+def test_no_server():
+    try:
+        testR = SOLIDserverRest(None)
+        testR.use_native_ssd('soliduser', 'solidpass')
+    except SSDError:
+        None
 # ---------------------------------------------
 
 
 def do_all(b=True):
     """ run all tests from the python """
     if b:
-        test_native_simple_call()
-    else:
         test_setup_init()
-        test_setup_woinit()
         test_setup_simple()
+        test_setup_woinit()
+        test_native_simple_call()
+        test_no_server()
+        None
+    else:
+        None
 
 
 if __name__ == '__main__':

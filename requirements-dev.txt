@@ -1,0 +1,4 @@
+pycodestyle
+codecov
+pytest
+pytest-cov
