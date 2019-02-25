@@ -52,6 +52,8 @@ def test_setup_simple():
     if 'X-IPM-Password' not in s:
         assert False, "encoded credentials not detected"
 
+    print(con)
+
     con.clean()
 
 
@@ -81,6 +83,8 @@ def test_native_simple_call():
         except SSDRequestError:
             None
 
+    con.clean()
+
 
 def test_no_server():
     try:
@@ -88,6 +92,64 @@ def test_no_server():
         testR.use_native_ssd('soliduser', 'solidpass')
     except SSDError:
         None
+
+
+def test_none_existing_query():
+    con = SOLIDserverRest(SSD_HOST)
+
+    try:
+        answerR = con.query('non_existing_method')
+    except SSDError:
+        None
+
+    con.clean()
+
+
+def test_site_update():
+    con = SOLIDserverRest(SSD_HOST)
+    try:
+        con.use_native_ssd(user=SSD_APIUSER, password=SSD_APIPWD)
+    except SSDInitError:
+        return
+
+    parameters = {'site_name': 'site_test',
+                  'site_description': 'site_test description'}
+
+    if env_standalone == "REAL":
+        try:
+            answerR = con.query('ip_site_update', parameters)
+        except SSDRequestError:
+            assert False, "site update failed"
+    else:
+        try:
+            answerR = con.query('ip_site_update', parameters)
+        except SSDError:
+            None
+
+    con.clean()
+
+
+def test_method_post():
+    con = SOLIDserverRest(SSD_HOST)
+
+    try:
+        con.use_native_ssd(user=SSD_APIUSER, password=SSD_APIPWD)
+    except SSDInitError:
+        return
+
+    if env_standalone == "REAL":
+        try:
+            answerR = con.query('ip_alias6_add')
+        except SSDRequestError:
+            assert False, "method post failed"
+    else:
+        try:
+            answerR = con.query('ip_alias6_add')
+        except SSDError:
+            None
+
+    con.clean()
+
 # ---------------------------------------------
 
 
@@ -99,6 +161,9 @@ def do_all(b=True):
         test_setup_woinit()
         test_native_simple_call()
         test_no_server()
+        test_none_existing_query()
+        test_site_update()
+        test_method_post()
         None
     else:
         None
