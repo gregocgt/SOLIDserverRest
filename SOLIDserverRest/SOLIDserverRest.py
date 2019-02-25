@@ -5,137 +5,173 @@
 # http://<SOLIDserver-IP>/rest/<service>?<param> [param=URLencode(value)]
 ###########################################################
 
+"""
+Efficient IP low level SOLIDServer API binding
+"""
+
 import sys
 import base64
+import re
 
-import requests
+import logging
 import urllib
+import requests
 
-# Import management
-if sys.version_info[0] == 3:
-    from .mapper import *
-else:
+
+if sys.version_info[0] == 2:
     from mapper import *
+    from Exception import *
+else:
+    from .mapper import *
+    from .Exception import *
+
+__all__ = ["SOLIDserverRest"]
 
 ##########################################################################
 
 
-class REPONSE:
-    def __init__(self):
-        self.status_code = 0
-        self.content = "[{'error' : 'SOLIDServer unreachable'}]"
-
-    def __str__(self):
-        return 'REPONSE [ERROR]'
-
-
 class SOLIDserverRest:
+    """ main SSD class """
+    CNX_NATIVE = 1
+    CNX_APIKEY = 2
+    CNX_BASIC = 3
 
-    def __init__(self, host, user, password, debug=False):
+    headers = None
+    debug = None
+    prefix_url = None
+    cnx_type = None
+    user = None
+    password = None
+
+    def __init__(self, host, debug=False):
+        """ initialize connection with SSD host,
+            this function is not active,
+            just set host and parameters
+        """
+        self.clean()
+
         self.debug = debug
         self.host = host
+        self.prefix_url = 'https://{}/rest/'.format(host)
+        self.python_version = 0
+        self.fct_url_encode = None
+
+        # set specific features for python v2 (<=2020, not supported after)
+        if sys.version_info[0] != 3:
+            self.python_version = 2
+            self.fct_url_encode = urllib.urlencode
+        else:
+            self.python_version = 3
+            self.fct_url_encode = urllib.parse.urlencode
+
+        self.last_url = ''
+        self.resp = None
+
+    def use_native_ssd(self, user, password):
+        """ propose to use a native EfficientIP SSD connection with Username
+        and password encoded in the headers of each requests
+        """
+        logging.debug("useNativeSSD %s %s", user, password)
+
+        # check if SSD connection is established
+        if self.host is None:
+            raise SSDInitError()
+
         self.user = user
         self.password = password
-        self.prefixUrl = 'https://{}/rest/'.format(host)
+        self.cnx_type = self.CNX_NATIVE
 
         # Encryption management in function of Python version
-        if sys.version_info[0] == 3:
+        if self.python_version == 3:
             self.headers = {
-                'X-IPM-Username': base64.b64encode(
-                    user.encode()), 'X-IPM-Password': base64.b64encode(
-                    password.encode()), 'content-type': 'application/json'}
+                'X-IPM-Username': base64.b64encode(user.encode()),
+                'X-IPM-Password': base64.b64encode(password.encode()),
+                'content-type': 'application/json'
+            }
         else:
             self.headers = {
                 'X-IPM-Username': base64.standard_b64encode(user),
                 'X-IPM-Password': base64.standard_b64encode(password),
-                'content-type': 'application/json'}
-        self.lastUrl = ''
-        self.resp = None
+                'content-type': 'application/json'
+            }
 
-    def query(self, service, params=None, payload=None, sslVerify=False):
+    def query(self, service, params=None, ssl_verify=False, timeout=2):
+        """ send request to the API endpoint, returns request result """
 
-        if params is None:
-            params = ''
+        if params is not None:
+            params = "?"+self.fct_url_encode(params)
         else:
-            if sys.version_info[0] == 3:
-                params = urllib.parse.urlencode(params)
-            else:
-                params = urllib.urlencode(params)
+            params = ''
 
-            params = "?{}".format(params)
+        # choose method
+        method = None
+        for verb in METHOD_MAPPER:
+            _q = ".*_{}$".format(verb)
+            if re.match(_q, service) is not None:
+                method = METHOD_MAPPER[verb]
+                break
 
-        # choose methode
-        methode = service.replace('_', ' ')
-        for mot in methodeMapper:
-            if mot in methode:
-                methode = methodeMapper.get(mot)
+        if method is None:
+            logging.error("no method available for request %s", service)
+
+        logging.debug("method %s selected for service %s", method, service)
 
         # flag_add management
-        if methode == 'POST':
+        if method == 'POST':
             params = "{}{}".format(params, '&add_flag=new_only')
-        elif methode == 'PUT':
+        elif method == 'PUT':
             params = "{}{}".format(params, '&add_flag=edit_only')
 
         # choose service
-        service = serviceMapper.get(service)
-        self.last_url = "{}{}".format(service, params).strip()
-        url = "{}{}".format(self.prefixUrl, self.last_url)
+        svc_mapped = SERVICE_MAPPER.get(service)
+        if svc_mapped is None:
+            logging.error("unknown service %s", service)
+            raise SSDServiceError(service)
+
+        self.last_url = "{}{}".format(svc_mapped, params).strip()
+        url = "{}{}".format(self.prefix_url, self.last_url)
 
         # to https communication whithout certificate
         requests.urllib3.disable_warnings()
 
         try:
             answer = requests.request(
-                methode,
+                method,
                 url,
                 headers=self.headers,
-                verify=sslVerify,
-                timeout=2)
+                verify=ssl_verify,
+                timeout=timeout)
         except BaseException:
-            answer = REPONSE()
+            raise SSDRequestError(method, url, self.headers)
 
         return answer
 
+    def get_headers(self):
+        """ returns the headers attached to this connection """
+        return self.headers
 
-#########################################################################
-# Hors Lib
-##########################################################################
-def usage():
-    print("")
-    print("#####################################")
-    print("# Module to request SOLIDServer API #")
-    print("#####################################")
-    print("")
-    print("MANUAL")
-    print("------")
-    print("1. Declare object")
-    print("      Your object declaration permits to set:")
-    print("         => host = IP adresse of the SOLIDserver server")
-    print("         => user = user who want to use")
-    print("         => password = password of the user")
-    print("")
-    print("Object declaration:")
-    print('      your_obj = SOLIDserverRest("host", "user", "password")')
-    print("")
-    print("2. Request to SOLIDserver API")
-    print("    You need parameters:")
-    print("       => methode = choose your methode in the list below")
-    print("       => parameters = Python dico with parameters you want to use")
-    print("       => sslVerify = this option permits to check your server SSL")
-    print("                      certificate.")
-    print("                      To check you must set: sslVerify=True")
-    print("")
-    print("Query to SOLIDserver API")
-    print('rest_answer=your_obj.query("methode","parameters",sslVerify=False)')
-    print("")
-    print("3. Keep answer")
-    print("      print(rest_answer) => object name")
-    print("      print(rest_answer.status_code) => current http answer code")
-    print("                                        set in the object")
-    print("      print(rest_answer.content) => Answer core from SOLIDserver")
-    print("                                    API set in the object")
-    print("")
+    def get_status(self):
+        """ returns status of the SSD connection """
+        _r = {
+            'host': self.host,
+            'python_version': self.python_version
+        }
+        return _r
 
+    def clean(self):
+        """ clean all status of the SSD connection """
+        self.headers = None
+        self.debug = None
+        self.prefix_url = None
+        self.cnx_type = None
+        self.user = None
+        self.password = None
+        self.last_url = ''
+        self.resp = None
+        self.python_version = None
+        self.host = None
 
-if __name__ == "__main__":
-    usage()
+    def __str__(self):
+        _s = "SOLIDserverRest: API={}, user={}"
+        return(_s.format(self.prefix_url,
+                         self.user))

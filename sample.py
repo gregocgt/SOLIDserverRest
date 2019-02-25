@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*-coding:Utf-8 -*
 ##########################################################
-from SOLIDserverRest.SOLIDserverRest import *
+from SOLIDserverRest import *
 
 print("")
 print("################")
@@ -12,7 +12,12 @@ print("")
 print("Object declaration")
 print("-------------------")
 print('your_obj = SOLIDServerRest("host", "user", "password")')
-testR = SOLIDserverRest('192.0.2.42', 'soliduser', 'solidpass')
+con = SOLIDserverRest('192.168.56.254')
+try:
+    con.useNativeSSD(user="api", password="admin")
+except SSDInitError:
+    exit()
+
 print("-------------------")
 print("")
 
@@ -23,10 +28,9 @@ parameters = {'site_name': 'toto', 'site_description': 'site description'}
 print("-------------------")
 print("")
 
-
 print('...')
 
-answerR = testR.query('ip_site_update', parameters)
+answerR = con.query('ip_site_update', parameters)
 
 print("")
 print("REPONSE")

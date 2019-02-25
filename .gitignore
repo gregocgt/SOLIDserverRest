@@ -4,3 +4,7 @@
 /dist
 *.coverage
 *.coveragerc
+# virtualenv for python version regression test
+env27/**
+env36/**
+env37/**
