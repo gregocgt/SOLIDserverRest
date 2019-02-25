@@ -54,10 +54,13 @@ def test_native_simple_call():
     con = SOLIDserverRest(SSD_HOST)
     con.use_native_ssd(user=SSD_APIUSER, password=SSD_APIPWD)
 
-    answer = con.query('ip_site_count',
-                       None,
-                       ssl_verify=False,
-                       timeout=1)
+    try:
+        answer = con.query('ip_site_count',
+                            None,
+                            ssl_verify=False,
+                            timeout=1)
+    except SSDError:
+        None
 
     if answer.status_code != 200:
         assert False, "native call failed"
