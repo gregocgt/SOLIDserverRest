@@ -11,7 +11,25 @@ def test_answer():
 
     try:
         answerR = testR.query('ip_site_update', parameters)
+    except SSDError:
+        None
+
+    try:
         answerR = testR.query('ip_site_delete', parameters)
     except SSDError:
         None
+
+    try:
+        answerR = testR.query('non_existing_method')
+    except SSDError:
+        None
+
+    try:
+        answerR = testR.query('ip_alias6_add')
+    except SSDError:
+        None
+
+    print(testR)
+    print(testR.get_headers())
+    print(testR.get_status())
     # usage()
