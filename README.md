@@ -77,7 +77,7 @@ Methods are organized to match the ontology used in SOLIDServer, you will find:
 * Addresses (v4 and v6)
 * Aliases (v4 and v6)
 
-More information about supported methods in the [specific document](doc/METHODS.md)
+More information about supported methods in the [specific document](docs/METHODS.md)
 
 ## Supported SSD modules in methods are:
 -ip (IPAM - IP Address Management)
