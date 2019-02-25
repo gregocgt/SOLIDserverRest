@@ -12,12 +12,13 @@ cache: pip
 before_install:
 - python setup.py sdist
 - pip install --upgrade pip
+- pip uninstall -y pytest
 install:
 - pip install -r requirements.txt
 - pip install -r requirements-dev.txt
-- pip install ./dist/*
-- pip install --upgrade pytest
-- pip install pytest-cov
+# - pip install ./dist/*
+# - pip install --upgrade pytest
+# - pip install pytest-cov
 script:
 - pycodestyle ./SOLIDserverRest/*.py
 # - python test.py
