@@ -22,6 +22,6 @@ script:
 - pycodestyle ./SOLIDserverRest/*.py
 - python test.py
 - coverage run ./SOLIDserverRest/*.py
-- TEST_SERVER=FAKE pytest --cov=./SOLIDserverRest
+- TEST_SERVER=FAKE pytest --cov=./SOLIDserverRest tests
 after_success:
   - codecov
