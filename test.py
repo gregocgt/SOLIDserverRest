@@ -13,5 +13,5 @@ def test_answer():
         answerR = testR.query('ip_site_update', parameters)
         answerR = testR.query('ip_site_delete', parameters)
     except SSDError:
-        exit()
+        None
     # usage()
