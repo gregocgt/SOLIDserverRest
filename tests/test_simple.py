@@ -59,11 +59,13 @@ def test_native_simple_call():
                             None,
                             ssl_verify=False,
                             timeout=1)
+        
+        if answer.status_code != 200:
+            assert False, "native call failed"
+
     except SSDError:
         None
 
-    if answer.status_code != 200:
-        assert False, "native call failed"
 # ---------------------------------------------
 
 
