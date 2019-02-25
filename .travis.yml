@@ -10,15 +10,16 @@ virtualenv:
   system_site_packages: false
 cache: pip
 before_install:
-- python setup.py sdist
 - pip install --upgrade pip
-install:
 - pip install -r requirements.txt
-- pip install ./dist/*
+- pip install pytest
+- pip install --upgrade pytest 
 - pip install pycodestyle
 - pip install codecov
-- pip install --upgrade pytest 
 - pip install pytest-cov
+install:
+- python setup.py sdist
+- pip install ./dist/*
 script:
 - pycodestyle ./SOLIDserverRest/*.py
 - python test.py
