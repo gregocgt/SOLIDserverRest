@@ -29,7 +29,6 @@ __all__ = ["SOLIDserverRest"]
 
 ##########################################################################
 
-
 class SOLIDserverRest:
     """ main SSD class """
     CNX_NATIVE = 1
@@ -172,51 +171,6 @@ class SOLIDserverRest:
         self.host = None
 
     def __str__(self):
-        return("SOLIDserverRest: API={}, user={}".format(self.prefix_url,
-                                                         self.user))
-
-        #########################################################################
-        # Hors Lib
-        ##########################################################################
-
-
-def usage():
-    """ function to print usage..."""
-    print("")
-    print("#####################################")
-    print("# Module to request SOLIDServer API #")
-    print("#####################################")
-    print("")
-    print("MANUAL")
-    print("------")
-    print("1. Declare object")
-    print("      Your object declaration permits to set:")
-    print("         => host = IP adresse of the SOLIDserver server")
-    print("         => user = user who want to use")
-    print("         => password = password of the user")
-    print("")
-    print("Object declaration:")
-    print('      your_obj = SOLIDserverRest("host", "user", "password")')
-    print("")
-    print("2. Request to SOLIDserver API")
-    print("    You need parameters:")
-    print("       => methode = choose your methode in the list below")
-    print("       => parameters = Python dico with parameters you want to use")
-    print("       => ssl_verify = this option permits to check your server SSL")
-    print("                      certificate.")
-    print("                      To check you must set: ssl_verify=True")
-    print("")
-    print("Query to SOLIDserver API")
-    print('rest_answer=your_obj.query("methode","parameters",ssl_verify=False)')
-    print("")
-    print("3. Keep answer")
-    print("      print(rest_answer) => object name")
-    print("      print(rest_answer.status_code) => current http answer code")
-    print("                                        set in the object")
-    print("      print(rest_answer.content) => Answer core from SOLIDserver")
-    print("                                    API set in the object")
-    print("")
-
-
-if __name__ == "__main__":
-    usage()
+        _s = "SOLIDserverRest: API={}, user={}"
+        return(_s.format(self.prefix_url,
+                         self.user))
