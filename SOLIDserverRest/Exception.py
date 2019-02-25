@@ -5,7 +5,10 @@
 Exceptions for the SOLIDServer modules
 """
 
-__all__ = ["SSDError", "SSDInitError", "SSDServiceError"]
+__all__ = ["SSDError",
+           "SSDInitError",
+           "SSDServiceError",
+           "SSDRequestError"]
 
 
 class SSDError(Exception):
