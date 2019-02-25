@@ -25,5 +25,6 @@ script:
 - python test.py
 - coverage run ./SOLIDserverRest/*.py
 - pytest --cov=./SOLIDserverRest test.py
+- pytest --cov=./SOLIDserverRest /tests/*.py
 after_success:
   - codecov
