@@ -33,3 +33,10 @@ def test_answer():
     print(testR.get_headers())
     print(testR.get_status())
     # usage()
+
+def test_no_server():
+    try:
+        testR = SOLIDserverRest(None)
+        testR.use_native_ssd('soliduser', 'solidpass')
+    except SSDError:
+        None
