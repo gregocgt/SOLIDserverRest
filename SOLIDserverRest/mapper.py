@@ -10,6 +10,7 @@ __all__ = ["SERVICE_MAPPER", "METHOD_MAPPER"]
 
 SERVICE_MAPPER = {
     'ip_site_add': 'ip_site_add',
+    'ip_site_create': 'ip_site_add',
     'ip_site_update': 'ip_site_add',
     'ip_site_count': 'ip_site_count',
     'ip_site_list': 'ip_site_list',
@@ -70,5 +71,7 @@ METHOD_MAPPER = {
     'list': 'GET',
     'info': 'GET',
     'delete': "DELETE",
-    'find_free': "OPTIONS"
+    'find_free': "OPTIONS",
+    'create': 'POST',
+
 }

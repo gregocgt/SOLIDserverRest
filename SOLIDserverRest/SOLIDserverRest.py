@@ -95,7 +95,7 @@ class SOLIDserverRest:
                 'content-type': 'application/json'
             }
 
-    def query(self, service, params=None, ssl_verify=False, timeout=2):
+    def query(self, service, params=None, ssl_verify=False, timeout=2, option=False):
         """ send request to the API endpoint, returns request result """
 
         if params is not None:
@@ -105,11 +105,14 @@ class SOLIDserverRest:
 
         # choose method
         method = None
-        for verb in METHOD_MAPPER:
-            _q = ".*_{}$".format(verb)
-            if re.match(_q, service) is not None:
-                method = METHOD_MAPPER[verb]
-                break
+        if option:
+            method = 'OPTIONS'
+        else:
+            for verb in METHOD_MAPPER:
+                _q = ".*_{}$".format(verb)
+                if re.match(_q, service) is not None:
+                    method = METHOD_MAPPER[verb]
+                    break
 
         if method is None:
             logging.error("no method available for request %s", service)
