@@ -1,7 +1,14 @@
-#!/bin/sh
+#!/usr/bin/bash
+
+if [ -d './dist' ]; then
+	rm -f ./dist/*.*
+fi
+
+find . -name '*.pyc' -exec rm -f {} \;
+find . -name '*.egg-info' -exec rm -rf {} \;
+find . -name '__pycache__' -exec rm -rf {} \;
 
 # Before Install
-rm /dist/*.*
 pip install --upgrade pip
 pip install -r requirements.txt
 pip install pytest
