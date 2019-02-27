@@ -21,8 +21,10 @@ install:
 - python setup.py sdist
 - pip install ./dist/*
 script:
+- ./tests/tests.py
 - pycodestyle ./SOLIDserverRest/*.py
 - coverage run ./SOLIDserverRest/*.py
+- find . -name '*.pyc' -exec rm -f {} \;
 - pytest --cov=./SOLIDserverRest tests/*
 after_success:
   - codecov
