@@ -22,6 +22,7 @@ install:
 - python setup.py sdist
 - pip install ./dist/*
 script:
+- pip freeze
 - ./tests/tests.py
 - pycodestyle ./SOLIDserverRest/*.py
 - coverage run ./SOLIDserverRest/*.py
