@@ -57,296 +57,53 @@ User: <your user name's>
 Password: <your password>
 --------------------------------
 Sub Test: ip_pool6_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+Parameters: {'site_name': 'sit_pytohn_lib_test', 'description': 'test site'}
 TEST: *
---------------------------------
---------------------------------
-Sub Test: ip_subnet_find_free
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **
---------------------------------
---------------------------------
-Sub Test: ip_site_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***
---------------------------------
---------------------------------
-Sub Test: ip_alias_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****
---------------------------------
---------------------------------
-Sub Test: ip_site_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****
---------------------------------
---------------------------------
-Sub Test: ip_address6_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******
---------------------------------
---------------------------------
-Sub Test: ip_subnet_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *******
---------------------------------
---------------------------------
-Sub Test: ip_address6_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ********
---------------------------------
---------------------------------
-Sub Test: ip_pool_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *********
---------------------------------
---------------------------------
-Sub Test: ip_subnet_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********
---------------------------------
---------------------------------
-Sub Test: ip_pool_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********
---------------------------------
---------------------------------
-Sub Test: ip_address6_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ************
---------------------------------
---------------------------------
-Sub Test: ip_address6_find_free
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************
---------------------------------
---------------------------------
-Sub Test: ip_site_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************
---------------------------------
---------------------------------
-Sub Test: ip_site_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************
---------------------------------
---------------------------------
-Sub Test: ip_subnet_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************
---------------------------------
---------------------------------
-Sub Test: ip_pool_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******************
---------------------------------
---------------------------------
-Sub Test: ip_address6_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *******************
---------------------------------
---------------------------------
-Sub Test: ip_pool6_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ********************
---------------------------------
---------------------------------
-Sub Test: ip_site_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *********************
---------------------------------
---------------------------------
-Sub Test: ip_pool6_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********************
---------------------------------
---------------------------------
-Sub Test: ip_address_find_free
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********************
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************************
---------------------------------
---------------------------------
-Sub Test: ip_alias6_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************************
---------------------------------
---------------------------------
-Sub Test: ip_site_create
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************************
---------------------------------
---------------------------------
-Sub Test: ip_pool6_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************************
---------------------------------
---------------------------------
-Sub Test: ip_address_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************************
---------------------------------
---------------------------------
-Sub Test: ip_alias_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******************************
---------------------------------
---------------------------------
-Sub Test: ip_address_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *******************************
---------------------------------
---------------------------------
-Sub Test: ip_address_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ********************************
---------------------------------
---------------------------------
-Sub Test: ip_pool_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *********************************
---------------------------------
---------------------------------
-Sub Test: ip_address_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********************************
---------------------------------
---------------------------------
-Sub Test: ip_address_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ************************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_find_free
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************************************
---------------------------------
---------------------------------
-Sub Test: ip_pool6_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************************************
---------------------------------
---------------------------------
-Sub Test: ip_address6_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************************************
---------------------------------
---------------------------------
-Sub Test: ip_pool6_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******************************************
---------------------------------
---------------------------------
-Sub Test: ip_alias6_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *******************************************
---------------------------------
---------------------------------
-Sub Test: ip_alias_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ********************************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *********************************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********************************************
---------------------------------
---------------------------------
-Sub Test: ip_alias6_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********************************************
---------------------------------
---------------------------------
-Sub Test: ip_subnet_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ************************************************
---------------------------------
---------------------------------
-Sub Test: ip_pool_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************************************************
---------------------------------
---------------------------------
-Sub Test: ip_address_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************************************************
---------------------------------
---------------------------------
-Sub Test: ip_site_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************************************************
---------------------------------
---------------------------------
-Sub Test: ip_pool_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************************************************
---------------------------------
---------------------------------
-Sub Test: ip_address6_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************************************************
---------------------------------
-RESULTAT
-53 services checked / 53 total services
-END of TEST AUTO
-END => test.py
 -------------------------------------------------------------------------
 ### PYCODESTYLE ###
+./SOLIDserverRest/SOLIDserverRest.py:144:9: E265 block comment should start with '# '
 -------------------------------------------------------------------------
 ### COVERAGE ###
 ============================= test session starts ==============================
 platform linux2 -- Python 2.7.15, pytest-4.3.0, py-1.8.0, pluggy-0.9.0
 rootdir: /home/gcugat/Repos/SOLIDserverRest, inifile:
 plugins: cov-2.6.1
-collected 6 items
+collected 4 items / 1 errors / 3 selected
 
-tests/test_simple.py ....                                                [ 66%]
-tests/tests.py ..                                                        [100%]
+==================================== ERRORS ====================================
+_______________________ ERROR collecting tests/tests.py ________________________
+tests/tests.py:83: in <module>
+    test_auto_dico()
+tests/tests.py:62: in test_auto_dico
+    answerR = testR.query(serviceR, parameters)
+SOLIDserverRest/SOLIDserverRest.py:143: in query
+    requests.urllib.disable_warnings()
+E   AttributeError: 'module' object has no attribute 'urllib'
+------------------------------- Captured stdout --------------------------------
+START => test.py
+TEST: Test no server
+Test = OK
+================================
+TEST AUTO
+================================
+IP of th server: <your server IP's>
+User: <your user name's>
+Password: <your password>
+--------------------------------
+Sub Test: ip_pool6_list
+Parameters: {'site_name': 'sit_pytohn_lib_test', 'description': 'test site'}
+TEST: *
 
 ---------- coverage: platform linux2, python 2.7.15-final-0 ----------
 Name                                 Stmts   Miss Branch BrPart  Cover
 ----------------------------------------------------------------------
-SOLIDserverRest/Exception.py            14      1      0      0    93%
-SOLIDserverRest/SOLIDserverRest.py      97     12     24      7    84%
+SOLIDserverRest/Exception.py            14      4      0      0    71%
+SOLIDserverRest/SOLIDserverRest.py      97     22     24     10    74%
 SOLIDserverRest/__init__.py              8      3      2      1    60%
 SOLIDserverRest/mapper.py                4      0      0      0   100%
 ----------------------------------------------------------------------
-TOTAL                                  123     16     26      8    84%
+TOTAL                                  123     29     26     11    73%
 
-
-=========================== 6 passed in 1.57 seconds ===========================
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 errors during collection !!!!!!!!!!!!!!!!!!!!
+=========================== 1 error in 0.38 seconds ============================
 -------------------------------------------------------------------------

@@ -140,7 +140,7 @@ class SOLIDserverRest:
         url = "{}{}".format(self.prefix_url, self.last_url)
 
         # to https communication whithout certificate
-        requests.urllib3.disable_warnings()
+        requests.urllib.disable_warnings()
 
         try:
             answer = requests.request(
