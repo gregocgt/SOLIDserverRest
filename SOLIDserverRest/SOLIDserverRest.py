@@ -95,7 +95,12 @@ class SOLIDserverRest:
                 'content-type': 'application/json'
             }
 
-    def query(self, service, params=None, ssl_verify=False, timeout=2, option=False):
+    def query(
+            self, service,
+            params=None,
+            ssl_verify=False,
+            timeout=2,
+            option=False):
         """ send request to the API endpoint, returns request result """
 
         if params is not None:

@@ -34,7 +34,7 @@ echo '### Unitary tests ###' | tee -a report.txt
 find . -name '*.pyc' -exec rm -f {} \;
 echo '-------------------------------------------------------------------------' | tee -a report.txt
 echo '### PYCODESTYLE ###' | tee -a report.txt
-pycodestyle ./SOLIDserverRest/*.py | tee -a report.txt
+pycodestyle --first ./SOLIDserverRest/*.py | tee -a report.txt
 echo '-------------------------------------------------------------------------' | tee -a report.txt
 echo '### COVERAGE ###' | tee -a report.txt
 coverage run ./SOLIDserverRest/*.py | tee -a report.txt
