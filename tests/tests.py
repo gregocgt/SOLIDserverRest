@@ -4,6 +4,7 @@
 import sys
 import os
 import json
+
 sys.path.append(os.getcwd())
 
 from SOLIDserverRest import *
