@@ -17,6 +17,7 @@ before_install:
 - pip install pycodestyle
 - pip install codecov
 - pip install pytest-cov
+- pip install --upgrade  requests
 install:
 - python setup.py sdist
 - pip install ./dist/*
