@@ -139,8 +139,8 @@ class SOLIDserverRest:
         self.last_url = "{}{}".format(svc_mapped, params).strip()
         url = "{}{}".format(self.prefix_url, self.last_url)
 
-        # to https communication whithout certificate
-        #requests.urllib.disable_warnings()
+        '''to https communication whithout certificate
+        #requests.urllib.disable_warnings()'''
 
         try:
             answer = requests.request(

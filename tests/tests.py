@@ -11,9 +11,19 @@ from SOLIDserverRest import *
 from SOLIDserverRest.Exception import *
 
 if sys.version_info[0] == 2:
-    from data import *
+    try:
+        from data import *
+
+    except:
+        from data_sample import *
+
 else:
+    try:
         from .data import *
+
+    except:
+        from .data_sample import *
+
 
 print('START => test.py')
 
