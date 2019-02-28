@@ -100,7 +100,7 @@ class SOLIDserverRest:
             params=None,
             ssl_verify=False,
             timeout=2,
-            option=False):
+            documentation=False):
         """ send request to the API endpoint, returns request result """
 
         if params is not None:
@@ -110,7 +110,7 @@ class SOLIDserverRest:
 
         # choose method
         method = None
-        if option:
+        if documentation:
             method = 'OPTIONS'
         else:
             for verb in METHOD_MAPPER:

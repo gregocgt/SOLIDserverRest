@@ -38,16 +38,31 @@ def test_no_server():
         print('Test = OK')
         None
 
+def test_readme_service():
+    print('TEST: Test Readme service')
+    testR = SOLIDserverRest(SERVER)
+    testR.use_native_ssd(USER, PWD)
+    serviceR = 'ip_site_create'
+    parameters = PARAMETERS
+        
+    try:
+        answerR = testR.query(serviceR, parameters, documentation=True)
+        print('Answer: {}'.format(answerR))
+        print('Answer: {}'.format(answerR.status_code))
+        print('Answer:')
+        print(answerR.content)
+        print('--------------------------------------')
+        print('Test = OK')
+    
+    except SSDError:
+        None
+
 def test_auto_dico():
     print('================================')
     print('TEST AUTO')
     print('================================')
     testR = SOLIDserverRest(SERVER)
     testR.use_native_ssd(USER, PWD)
-
-    #print('IP of th server: {}'.format(testR.host))
-    #print('User: {}'.format(testR.user))
-    #print('Password: {}'.format(testR.password))
 
     print("IP of th server: <your server IP's>")
     print("User: <your user name's>")
@@ -90,5 +105,6 @@ def test_auto_dico():
 
 
 test_no_server()
+test_readme_service()
 test_auto_dico()
 print('END => test.py')

@@ -49,6 +49,13 @@ Successfully installed SOLIDserverRest-1.5.1
 START => test.py
 TEST: Test no server
 Test = OK
+TEST: Test Readme service
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","description":"Add\/modify a space"},{"errno":"0","mandatory_addition_params":"site_name"},{"errno":"0","mandatory_edition_params":"(site_id || site_name)"},{"errno":"0","param_type":"in","name":"site_id","descr":"Space ID","type":">0"},{"errno":"0","param_type":"in","name":"site_name","descr":"Space name","type":"string","max_length":"128"},{"errno":"0","param_type":"in","name":"site_description","descr":"Space description","type":"string","max_length":"128","default_value":""},{"errno":"0","param_type":"in","name":"parent_site_id","descr":"Space parent ID","type":"integer","can_be_empty":"1","value_if_empty":"0","default_value":"0"},{"errno":"0","param_type":"in","name":"parent_site_name","descr":"Space parent name","type":"string","can_be_empty":"1"},{"errno":"0","param_type":"in","name":"site_class_name","descr":"Space class name","type":"string","max_length":"128","can_be_empty":"1","default_value":""},{"errno":"0","param_type":"in","name":"site_class_parameters","descr":"Space class parameters","type":"string","can_be_empty":"1","default_value":""},{"errno":"0","param_type":"in","name":"site_is_template","descr":"Space is a template","type":"bool","default_value":"0"},{"errno":"0","param_type":"in","name":"keep_previous_param","descr":"Params to not overwrite for update","type":"string","internal_use":"1"},{"errno":"0","param_type":"in","name":"add_flag","descr":"new_edit\/new_only\/edit_only flag","type":"enum","enum_values":"new_edit,new_only,edit_only","default_value":"new_edit"},{"errno":"0","param_type":"in","name":"class_parameters_to_delete","descr":"Class parameters to delete","type":"string","can_be_empty":"1"},{"errno":"0","param_type":"in","name":"site_class_parameters_properties","descr":"Class parameters properties","type":"string","can_be_empty":"1"},{"errno":"0","param_type":"in","name":"no_rule_exec","descr":"Dont execute rules","type":"bool","default_value":"0","internal_use":"1"},{"errno":"0","param_type":"in","name":"only_rule_exec","descr":"Only execute rules","type":"bool","default_value":"0","internal_use":"1"},{"errno":"0","param_type":"in","name":"additional_parameters","descr":"Additional parameters passed to rules","type":"string","internal_use":"1"},{"errno":"0","param_type":"in","name":"no_usertracking","descr":"Do not store information in usertracking","type":"bool","internal_use":"1"},{"errno":"0","param_type":"out","name":"errno","descr":"ID of the error"},{"errno":"0","param_type":"out","name":"errmsg","descr":"Error message"},{"errno":"0","param_type":"out","name":"msg","descr":"Message, information about service"},{"errno":"0","param_type":"out","name":"severity","descr":"severity of the error"},{"errno":"0","param_type":"out","name":"parameters","descr":"Missing parameters"},{"errno":"0","param_type":"out","name":"param_format","descr":"format of the incorrect parameter"},{"errno":"0","param_type":"out","name":"param_value","descr":"value of the incorrect parameter"},{"errno":"0","param_type":"out","name":"ret_oid","descr":"Return oid"}]
+--------------------------------------
+Test = OK
 ================================
 TEST AUTO
 ================================
@@ -544,10 +551,10 @@ END => test.py
 platform linux2 -- Python 2.7.15, pytest-4.3.0, py-1.8.0, pluggy-0.9.0
 rootdir: /home/gcugat/Repos/SOLIDserverRest, inifile:
 plugins: cov-2.6.1
-collected 6 items
+collected 7 items
 
-tests/test_simple.py ....                                                [ 66%]
-tests/tests.py ..                                                        [100%]
+tests/test_simple.py ....                                                [ 57%]
+tests/tests.py ...                                                       [100%]
 
 =============================== warnings summary ===============================
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
@@ -603,7 +610,8 @@ lib/python2.7/site-packages/urllib3/connectionpool.py:847
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
-tests/tests.py::test_auto_dico
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+tests/tests.py::test_readme_service
   /home/gcugat/Repos/SOLIDserverRest/lib/python2.7/site-packages/urllib3/connectionpool.py:847: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
     InsecureRequestWarning)
 
@@ -613,11 +621,11 @@ tests/tests.py::test_auto_dico
 Name                                 Stmts   Miss Branch BrPart  Cover
 ----------------------------------------------------------------------
 SOLIDserverRest/Exception.py            14      1      0      0    93%
-SOLIDserverRest/SOLIDserverRest.py      96     11     24      7    85%
+SOLIDserverRest/SOLIDserverRest.py      96     10     24      6    87%
 SOLIDserverRest/__init__.py              8      3      2      1    60%
 SOLIDserverRest/mapper.py                4      0      0      0   100%
 ----------------------------------------------------------------------
-TOTAL                                  122     15     26      8    84%
+TOTAL                                  122     14     26      7    86%
 
-==================== 6 passed, 54 warnings in 6.93 seconds =====================
+==================== 7 passed, 55 warnings in 5.93 seconds =====================
 -------------------------------------------------------------------------
