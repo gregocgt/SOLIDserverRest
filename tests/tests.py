@@ -5,7 +5,6 @@ import sys
 import os
 import json
 import re
-import pytest
 import logging
 
 _logFormat = '%(asctime)-15s [%(levelname)s] %(filename)s:%(lineno)d - %(message)s'
