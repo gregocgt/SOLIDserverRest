@@ -1,0 +1,68 @@
+stages:
+   - build
+   - test
+
+variables:
+   CODECOV_TOKEN: "06e2028a-c621-4860-8a18-574e6beeb35d"
+
+before_script:
+   - apk add --no-cache --virtual .build-deps git
+   - pip install -r requirements.txt
+
+build-37:
+  stage: build
+  image: python:3.7-alpine
+  script:
+     - python setup.py sdist
+     - pip install ./dist/*
+
+build-36:
+  stage: build
+  image: python:3.6-alpine
+  script:
+     - python setup.py sdist
+     - pip install ./dist/*
+
+build-27:
+  stage: build
+  image: python:2.7-alpine
+  script:
+     - python setup.py sdist
+     - pip install ./dist/*
+
+test-37:
+  stage: test
+  image: python:3.7-alpine
+  dependencies:
+    - build-37
+  script:
+     - pip install -r requirements-tests.txt
+     - pycodestyle ./SOLIDserverRest/*.py
+     - coverage run ./SOLIDserverRest/*.py
+     - pytest --cov=./SOLIDserverRest tests/*
+     - coverage report -m
+     - codecov
+
+test-36:
+  stage: test
+  image: python:3.6-alpine
+  dependencies:
+    - build-36
+  script:
+     - pip install -r requirements-tests.txt
+     - pycodestyle ./SOLIDserverRest/*.py
+     - coverage run ./SOLIDserverRest/*.py
+     - pytest --cov=./SOLIDserverRest tests/*
+     - coverage report -m
+
+test-27:
+  stage: test
+  image: python:2.7-alpine
+  dependencies:
+    - build-27
+  script:
+     - pip install -r requirements-tests.txt
+     - pycodestyle ./SOLIDserverRest/*.py
+     - coverage run ./SOLIDserverRest/*.py
+     - pytest --cov=./SOLIDserverRest tests/*
+     - coverage report -m

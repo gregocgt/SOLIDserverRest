@@ -3,9 +3,9 @@
 ##########################################################
 
 SERVER = '192.168.56.254'
-USER = 'apiuser'
+USER = 'api'
 PWD = 'apipwd'
 PARAMETERS = {
-	'site_name': 'site_pytohn_lib_test',
+	'site_name': 'site_pyton_lib_test',
 	'description':'test site'
 }

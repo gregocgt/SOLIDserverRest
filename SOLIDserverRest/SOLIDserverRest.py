@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*-coding:Utf-8 -*
 ##########################################################
 # Request example:
@@ -16,7 +15,8 @@ import re
 import logging
 import urllib
 import requests
-
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 if sys.version_info[0] == 2:
     from mapper import *
@@ -42,6 +42,7 @@ class SOLIDserverRest:
     cnx_type = None
     user = None
     password = None
+    auth = None
 
     def __init__(self, host, debug=False):
         """ initialize connection with SSD host,
@@ -55,14 +56,17 @@ class SOLIDserverRest:
         self.prefix_url = 'https://{}/rest/'.format(host)
         self.python_version = 0
         self.fct_url_encode = None
+        self.fct_b64_encode = None
 
         # set specific features for python v2 (<=2020, not supported after)
-        if sys.version_info[0] != 3:
+        if sys.version_info[0] == 2:
             self.python_version = 2
             self.fct_url_encode = urllib.urlencode
+            self.fct_b64_encode = base64.standard_b64encode
         else:
             self.python_version = 3
             self.fct_url_encode = urllib.parse.urlencode
+            self.fct_b64_encode = base64.b64encode
 
         self.last_url = ''
         self.resp = None
@@ -82,18 +86,30 @@ class SOLIDserverRest:
         self.cnx_type = self.CNX_NATIVE
 
         # Encryption management in function of Python version
-        if self.python_version == 3:
-            self.headers = {
-                'X-IPM-Username': base64.b64encode(user.encode()),
-                'X-IPM-Password': base64.b64encode(password.encode()),
-                'content-type': 'application/json'
-            }
-        else:
-            self.headers = {
-                'X-IPM-Username': base64.standard_b64encode(user),
-                'X-IPM-Password': base64.standard_b64encode(password),
-                'content-type': 'application/json'
-            }
+        self.headers = {
+            'X-IPM-Username': self.fct_b64_encode(user.encode()),
+            'X-IPM-Password': self.fct_b64_encode(password.encode()),
+            'content-type': 'application/json'
+        }
+
+    def use_basicauth_ssd(self, user, password):
+        """ propose to use the basic auth implementation on the SDS
+        """
+        logging.debug("useBasicAuthSSD %s %s", user, password)
+
+        # check if SSD connection is established
+        if self.host is None:
+            raise SSDInitError()
+
+        self.user = user
+        self.password = password
+
+        self.cnx_type = self.CNX_BASIC
+        self.auth = requests.auth.HTTPBasicAuth(user, password)
+
+        self.headers = {
+            'content-type': 'application/json'
+        }
 
     def query(
             self, service,
@@ -112,6 +128,7 @@ class SOLIDserverRest:
         method = None
         if option:
             method = 'OPTIONS'
+            params = ''
         else:
             for verb in METHOD_MAPPER:
                 _q = ".*_{}$".format(verb)
@@ -143,16 +160,21 @@ class SOLIDserverRest:
         #requests.urllib.disable_warnings()'''
 
         try:
-            answer = requests.request(
+            logging.debug("m={} u={} h={} v={} a={}".format(method,
+                                                            url,
+                                                            self.headers,
+                                                            ssl_verify,
+                                                            self.auth))
+
+            return requests.request(
                 method,
                 url,
                 headers=self.headers,
                 verify=ssl_verify,
-                timeout=timeout)
+                timeout=timeout,
+                auth=self.auth)
         except BaseException:
             raise SSDRequestError(method, url, self.headers)
-
-        return answer
 
     def get_headers(self):
         """ returns the headers attached to this connection """
