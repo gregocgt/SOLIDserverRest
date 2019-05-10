@@ -62,6 +62,36 @@ SERVICE_MAPPER = {
     'ip_alias6_add': 'ip6_alias_add',
     'ip_alias6_list': 'ip6_alias_list',
     'ip_alias6_delete': 'ip6_alias_delete',
+
+
+    'dns_rr_list': 'dns_rr_list',
+    'dns_rr_add': 'dns_rr_add',
+    'dns_rr_delete': 'dns_rr_delete',
+
+    'dns_server_list': 'dns_server_list',
+
+    'app_application_list': 'app_application_list',
+    'app_application_add': 'app_application_add',
+    'app_application_delete': 'app_application_delete',
+    'app_application_count': 'app_application_count',
+    'app_application_info': 'app_application_info',
+
+    'app_pool_add': 'app_pool_add',
+    'app_pool_update': 'app_pool_add',
+    'app_pool_list': 'app_pool_list',
+    'app_pool_count': 'app_pool_count',
+    'app_pool_info': 'app_pool_info',
+
+    'app_node_add': 'app_node_add',
+    'app_node_update': 'app_node_add',
+    'app_node_info': 'app_node_info',
+    'app_node_count': 'app_node_count',
+    'app_node_list': 'app_node_list',
+
+    'app_healthcheck_count': 'app_healthcheck_count',
+    'app_healthcheck_info': 'app_healthcheck_info',
+    'app_healthcheck_list': 'app_healthcheck_list',
+
 }
 
 METHOD_MAPPER = {
@@ -73,5 +103,4 @@ METHOD_MAPPER = {
     'delete': "DELETE",
     'find_free': "OPTIONS",
     'create': 'POST',
-
 }

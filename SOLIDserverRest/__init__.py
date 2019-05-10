@@ -1,5 +1,8 @@
-
 # from .Exception import *
+
+"""
+init of the SOLIDserver module
+"""
 
 import sys
 

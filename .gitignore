@@ -15,3 +15,5 @@ env36/**
 env37/**
 #Files
 /tests/data.py
+coverage.xml
+**/*~

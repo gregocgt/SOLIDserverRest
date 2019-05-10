@@ -12,11 +12,7 @@ cache: pip
 before_install:
 - pip install --upgrade pip
 - pip install -r requirements.txt
-- pip install pytest
-- pip install --upgrade pytest 
-- pip install pycodestyle
-- pip install codecov
-- pip install pytest-cov
+- pip install -r requirements-tests.txt
 - pip install --upgrade  requests
 - pip install --upgrade  py
 - pip install --upgrade  six
@@ -28,7 +24,6 @@ script:
 - find . -name '__pycache__' -exec rm -rf {} \;
 - find . -name '.pytest_cache' -exec rm -rf {} \;
 - pip freeze
-- ./tests/tests.py
 - pycodestyle ./SOLIDserverRest/*.py
 - coverage run ./SOLIDserverRest/*.py
 - find . -name '*.pyc' -exec rm -f {} \;

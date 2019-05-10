@@ -4,28 +4,44 @@
 
 import sys
 import os
+import logging
+
 sys.path.append(os.getcwd())
 
 from SOLIDserverRest import *
 from SOLIDserverRest.Exception import *
 
-SSD_HOST = "192.168.56.254"
-SSD_APIUSER = "api"
-SSD_APIPWD = "admin"
+if sys.version_info[0] == 2:
+    try:
+        from data import *
+
+    except:
+        from data_sample import *
+
+else:
+    try:
+        from .data import *
+
+    except:
+        from .data_sample import *
+
+#SSD_HOST = "192.168.56.254"
+#SSD_APIUSER = "api"
+#SSD_APIPWD = "apiadmin"
 
 
 def test_setup_init():
     """  simple connection creation """
-    testR = SOLIDserverRest(SSD_HOST)
+    testR = SOLIDserverRest(SERVER)
     testR.clean()
 
 
 def test_setup_woinit():
     """  set connection mode on unexisting connection """
-    con = SOLIDserverRest(SSD_HOST)
+    con = SOLIDserverRest(SERVER)
     con.clean()
     try:
-        con.use_native_ssd(user=SSD_APIUSER, password=SSD_APIPWD)
+        con.use_native_ssd(user=USER, password=PWD)
     except SSDInitError:
         return
 
@@ -35,8 +51,8 @@ def test_setup_woinit():
 
 def test_setup_simple():
     """ simple setup of SSD native connection """
-    con = SOLIDserverRest(SSD_HOST)
-    con.use_native_ssd(user=SSD_APIUSER, password=SSD_APIPWD)
+    con = SOLIDserverRest(SERVER)
+    con.use_native_ssd(user=USER, password=PWD)
 
     s = con.get_status()
     if 'python_version' not in s:
@@ -51,8 +67,8 @@ def test_setup_simple():
 
 def test_native_simple_call():
     """ simple call with SSD native connection """
-    con = SOLIDserverRest(SSD_HOST)
-    con.use_native_ssd(user=SSD_APIUSER, password=SSD_APIPWD)
+    con = SOLIDserverRest(SERVER)
+    con.use_native_ssd(user=USER, password=PWD)
 
     try:
         answer = con.query('ip_site_count',
@@ -61,6 +77,7 @@ def test_native_simple_call():
                             timeout=1)
         
         if answer.status_code != 200:
+            logging.error(answer.status_code)
             assert False, "native call failed"
 
     except SSDError:
