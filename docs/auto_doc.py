@@ -9,9 +9,38 @@ sys.path.append(os.getcwd())
 from SOLIDserverRest import *
 from SOLIDserverRest.Exception import *
 
-from data import *
+from DATA import *
 
-print('START => test.py')
+########################################################
+# Connection data
+#######################################################
+
+SERVER = '10.0.231.7'
+USER = 'ipmadmin'
+PWD = 'admin'
+PARAMETERS = {
+    'site_name': 'site_pytohn_lib_test',
+    'description':'test site'
+}
+
+print('********************************')
+print('* Start documentation writting *')
+print('********************************')
+
+def readme_writting():
+    texte = README_data
+    try:
+        print('Open README.md')
+        readme = open("README0.md", "w")
+        print('Write README.md')
+        readme.write(texte)
+        print('Close README.md')
+        readme.close()
+
+    except:
+        print('README.md is not wrotten!!!')
+
+
 
 def test_no_server():
     print('TEST: Test no answer')
@@ -122,7 +151,7 @@ def test_auto_dico():
     print('END of TEST AUTO')
 
 
-#test_no_server()
-#test_few_services()
-test_auto_dico()
-print('END => test.py')
+readme_writting()
+print('******************************')
+print('* END documentation writting *')
+print('******************************')
