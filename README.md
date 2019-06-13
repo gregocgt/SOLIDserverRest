@@ -34,7 +34,7 @@ con = SOLIDserverRest("fqdn_host.org")
 ```
 
 2. **Specify connection method**
-Only native connection is supported for this version, using SSD default method
+Only native connection is supported for this version, using SDS default method
 and providing authentication through headers in the requests with information
 encoded in base64
 
@@ -42,7 +42,7 @@ encoded in base64
 * password = password of the user
 
 ```python
-	con.use_native_ssd(user="apiuser", password="apipwd")
+	con.use_native_sds(user="apiuser", password="apipwd")
 ```
 
 3. **Request to SOLIDserver API**
@@ -79,5 +79,8 @@ Methods are organized to match the ontology used in SOLIDServer, you will find:
 
 More information about supported methods in the [specific document](docs/METHODS.md)
 
-## Supported SSD modules in methods are:
+## Supported SDS modules in methods are:
 -ip (IPAM - IP Address Management)
+-dns (DNS - RR Management)
+-app (Application Acces - GSLB Management)
+- 

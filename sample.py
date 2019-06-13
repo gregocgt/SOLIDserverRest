@@ -14,8 +14,8 @@ print("-------------------")
 print('your_obj = SOLIDServerRest("host", "user", "password")')
 con = SOLIDserverRest('192.168.56.254')
 try:
-    con.useNativeSSD(user="api", password="admin")
-except SSDInitError:
+    con.useNativeSDS(user="api", password="admin")
+except SDSInitError:
     exit()
 
 print("-------------------")
