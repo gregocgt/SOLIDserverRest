@@ -31,17 +31,17 @@ def test_no_server():
     print('TEST: Test no server')
     try:
         testR = SOLIDserverRest(None)
-        testR.use_native_ssd('soliduser', 'solidpass')
+        testR.use_native_sds('soliduser', 'solidpass')
         print('Test = NO-OK')
 
-    except SSDError:
+    except SDSError:
         print('Test = OK')
         None
 
 def test_readme_service():
     print('TEST: Test Readme service')
     testR = SOLIDserverRest(SERVER)
-    testR.use_native_ssd(USER, PWD)
+    testR.use_native_sds(USER, PWD)
     serviceR = 'ip_site_create'
     parameters = PARAMETERS
         
@@ -54,7 +54,7 @@ def test_readme_service():
         print('--------------------------------------')
         print('Test = OK')
     
-    except SSDError:
+    except SDSError:
         None
 
 def test_auto_dico():
@@ -62,7 +62,7 @@ def test_auto_dico():
     print('TEST AUTO')
     print('================================')
     testR = SOLIDserverRest(SERVER)
-    testR.use_native_ssd(USER, PWD)
+    testR.use_native_sds(USER, PWD)
 
     print("IP of th server: <your server IP's>")
     print("User: <your user name's>")
@@ -90,7 +90,7 @@ def test_auto_dico():
             print('Answer:')
             print(answerR.content)
             #print(json.dumps(json.loads(answerR.content), indent=4, sort_keys=True, encoding="utf-8"))
-        except SSDError:
+        except SDSError:
             None
 
         display_test = display_test + '*'
