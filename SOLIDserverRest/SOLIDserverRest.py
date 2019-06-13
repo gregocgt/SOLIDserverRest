@@ -67,15 +67,15 @@ class SOLIDserverRest:
         self.last_url = ''
         self.resp = None
 
-    def use_native_ssd(self, user, password):
+    def use_native_sds(self, user, password):
         """ propose to use a native EfficientIP SSD connection with Username
         and password encoded in the headers of each requests
         """
-        logging.debug("useNativeSSD %s %s", user, password)
+        logging.debug("useNativeSDS %s %s", user, password)
 
         # check if SSD connection is established
         if self.host is None:
-            raise SSDInitError()
+            raise SDSInitError()
 
         self.user = user
         self.password = password
@@ -134,7 +134,7 @@ class SOLIDserverRest:
         svc_mapped = SERVICE_MAPPER.get(service)
         if svc_mapped is None:
             logging.error("unknown service %s", service)
-            raise SSDServiceError(service)
+            raise SDSServiceError(service)
 
         self.last_url = "{}{}".format(svc_mapped, params).strip()
         url = "{}{}".format(self.prefix_url, self.last_url)
@@ -150,7 +150,7 @@ class SOLIDserverRest:
                 verify=ssl_verify,
                 timeout=timeout)
         except BaseException:
-            raise SSDRequestError(method, url, self.headers)
+            raise SDSRequestError(method, url, self.headers)
 
         return answer
 
