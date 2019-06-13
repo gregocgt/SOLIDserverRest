@@ -31,7 +31,7 @@ __all__ = ["SOLIDserverRest"]
 
 
 class SOLIDserverRest:
-    """ main SSD class """
+    """ main SDS class """
     CNX_NATIVE = 1
     CNX_APIKEY = 2
     CNX_BASIC = 3
