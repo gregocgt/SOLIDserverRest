@@ -113,4 +113,5 @@ METHOD_MAPPER = {
     'find_free': "OPTIONS",
     'create': 'POST',
     'delete': "DELETE",
+
 }
