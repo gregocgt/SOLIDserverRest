@@ -80,7 +80,7 @@ Methods are organized to match the ontology used in SOLIDServer, you will find:
 More information about supported methods in the [specific document](docs/METHODS.md)
 
 ## Supported SDS modules in methods are:
--ip (IPAM - IP Address Management)
--dns (DNS - RR Management)
--app (Application Acces - GSLB Management)
+* ip (IPAM - IP Address Management)
+* dns (DNS - RR Management)
+* app (Application Acces - GSLB Management)
 - 
