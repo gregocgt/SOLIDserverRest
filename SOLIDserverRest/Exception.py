@@ -17,7 +17,7 @@ class SDSError(Exception):
 
 
 class SDSInitError(SDSError):
-    """ raised when action on non initialized SSD connection """
+    """ raised when action on non initialized SDS connection """
     pass
 
 

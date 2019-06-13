@@ -44,7 +44,7 @@ class SOLIDserverRest:
     password = None
 
     def __init__(self, host, debug=False):
-        """ initialize connection with SSD host,
+        """ initialize connection with SDS host,
             this function is not active,
             just set host and parameters
         """
@@ -68,12 +68,12 @@ class SOLIDserverRest:
         self.resp = None
 
     def use_native_sds(self, user, password):
-        """ propose to use a native EfficientIP SSD connection with Username
+        """ propose to use a native EfficientIP SDS connection with Username
         and password encoded in the headers of each requests
         """
         logging.debug("useNativeSDS %s %s", user, password)
 
-        # check if SSD connection is established
+        # check if SDS connection is established
         if self.host is None:
             raise SDSInitError()
 
@@ -159,7 +159,7 @@ class SOLIDserverRest:
         return self.headers
 
     def get_status(self):
-        """ returns status of the SSD connection """
+        """ returns status of the SDS connection """
         _r = {
             'host': self.host,
             'python_version': self.python_version
@@ -167,7 +167,7 @@ class SOLIDserverRest:
         return _r
 
     def clean(self):
-        """ clean all status of the SSD connection """
+        """ clean all status of the SDS connection """
         self.headers = None
         self.debug = None
         self.prefix_url = None

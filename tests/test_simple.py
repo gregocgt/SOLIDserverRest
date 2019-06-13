@@ -34,9 +34,9 @@ def test_setup_woinit():
 
 
 def test_setup_simple():
-    """ simple setup of SSD native connection """
+    """ simple setup of SDS native connection """
     con = SOLIDserverRest(SDS_HOST)
-    con.use_native_ssd(user=SDS_APIUSER, password=SDS_APIPWD)
+    con.use_native_sds(user=SDS_APIUSER, password=SDS_APIPWD)
 
     s = con.get_status()
     if 'python_version' not in s:
@@ -50,9 +50,9 @@ def test_setup_simple():
 
 
 def test_native_simple_call():
-    """ simple call with SSD native connection """
+    """ simple call with SDS native connection """
     con = SOLIDserverRest(SDS_HOST)
-    con.use_native_ssd(user=SDS_APIUSER, password=SDS_APIPWD)
+    con.use_native_sds(user=SDS_APIUSER, password=SDS_APIPWD)
 
     try:
         answer = con.query('ip_site_count',
