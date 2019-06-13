@@ -5,30 +5,30 @@
 Exceptions for the SOLIDServer modules
 """
 
-__all__ = ["SSDError",
-           "SSDInitError",
-           "SSDServiceError",
-           "SSDRequestError"]
+__all__ = ["SDSError",
+           "SDSInitError",
+           "SDSServiceError",
+           "SDSRequestError"]
 
 
-class SSDError(Exception):
+class SDSError(Exception):
     """ generic class for any exception in SOLIDServer communication """
     pass
 
 
-class SSDInitError(SSDError):
-    """ raised when action on non initialized SSD connection """
+class SDSInitError(SDSError):
+    """ raised when action on non initialized SDS connection """
     pass
 
 
-class SSDServiceError(SSDError):
+class SDSServiceError(SDSError):
     """ raised on unknown service """
 
     def __init__(self, service_name):
         self.service = service_name
 
 
-class SSDRequestError(SSDError):
+class SDSRequestError(SDSError):
     """ raised when urllib request is failing """
 
     def __init__(self, method, url, headers):

@@ -45,7 +45,7 @@ class SOLIDserverRest:
     auth = None
 
     def __init__(self, host, debug=False):
-        """ initialize connection with SSD host,
+        """ initialize connection with SDS host,
             this function is not active,
             just set host and parameters
         """
@@ -71,15 +71,15 @@ class SOLIDserverRest:
         self.last_url = ''
         self.resp = None
 
-    def use_native_ssd(self, user, password):
-        """ propose to use a native EfficientIP SSD connection with Username
+    def use_native_sds(self, user, password):
+        """ propose to use a native EfficientIP SDS connection with Username
         and password encoded in the headers of each requests
         """
-        logging.debug("useNativeSSD %s %s", user, password)
+        logging.debug("useNativeSDS %s %s", user, password)
 
-        # check if SSD connection is established
+        # check if SDS connection is established
         if self.host is None:
-            raise SSDInitError()
+            raise SDSInitError()
 
         self.user = user
         self.password = password
@@ -116,7 +116,7 @@ class SOLIDserverRest:
             params=None,
             ssl_verify=False,
             timeout=2,
-            option=False):
+            documentation=False):
         """ send request to the API endpoint, returns request result """
 
         if params is not None:
@@ -126,7 +126,7 @@ class SOLIDserverRest:
 
         # choose method
         method = None
-        if option:
+        if documentation:
             method = 'OPTIONS'
             params = ''
         else:
@@ -151,7 +151,7 @@ class SOLIDserverRest:
         svc_mapped = SERVICE_MAPPER.get(service)
         if svc_mapped is None:
             logging.error("unknown service %s", service)
-            raise SSDServiceError(service)
+            raise SDSServiceError(service)
 
         self.last_url = "{}{}".format(svc_mapped, params).strip()
         url = "{}{}".format(self.prefix_url, self.last_url)
@@ -174,14 +174,14 @@ class SOLIDserverRest:
                 timeout=timeout,
                 auth=self.auth)
         except BaseException:
-            raise SSDRequestError(method, url, self.headers)
+            raise SDSRequestError(method, url, self.headers)
 
     def get_headers(self):
         """ returns the headers attached to this connection """
         return self.headers
 
     def get_status(self):
-        """ returns status of the SSD connection """
+        """ returns status of the SDS connection """
         _r = {
             'host': self.host,
             'python_version': self.python_version
@@ -189,7 +189,7 @@ class SOLIDserverRest:
         return _r
 
     def clean(self):
-        """ clean all status of the SSD connection """
+        """ clean all status of the SDS connection """
         self.headers = None
         self.debug = None
         self.prefix_url = None

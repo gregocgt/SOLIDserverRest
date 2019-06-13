@@ -49,6 +49,13 @@ Successfully installed SOLIDserverRest-1.5.1
 START => test.py
 TEST: Test no server
 Test = OK
+TEST: Test Readme service
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","description":"Add\/modify a space"},{"errno":"0","mandatory_addition_params":"site_name"},{"errno":"0","mandatory_edition_params":"(site_id || site_name)"},{"errno":"0","param_type":"in","name":"site_id","descr":"Space ID","type":">0"},{"errno":"0","param_type":"in","name":"site_name","descr":"Space name","type":"string","max_length":"128"},{"errno":"0","param_type":"in","name":"site_description","descr":"Space description","type":"string","max_length":"128","default_value":""},{"errno":"0","param_type":"in","name":"parent_site_id","descr":"Space parent ID","type":"integer","can_be_empty":"1","value_if_empty":"0","default_value":"0"},{"errno":"0","param_type":"in","name":"parent_site_name","descr":"Space parent name","type":"string","can_be_empty":"1"},{"errno":"0","param_type":"in","name":"site_class_name","descr":"Space class name","type":"string","max_length":"128","can_be_empty":"1","default_value":""},{"errno":"0","param_type":"in","name":"site_class_parameters","descr":"Space class parameters","type":"string","can_be_empty":"1","default_value":""},{"errno":"0","param_type":"in","name":"site_is_template","descr":"Space is a template","type":"bool","default_value":"0"},{"errno":"0","param_type":"in","name":"keep_previous_param","descr":"Params to not overwrite for update","type":"string","internal_use":"1"},{"errno":"0","param_type":"in","name":"add_flag","descr":"new_edit\/new_only\/edit_only flag","type":"enum","enum_values":"new_edit,new_only,edit_only","default_value":"new_edit"},{"errno":"0","param_type":"in","name":"class_parameters_to_delete","descr":"Class parameters to delete","type":"string","can_be_empty":"1"},{"errno":"0","param_type":"in","name":"site_class_parameters_properties","descr":"Class parameters properties","type":"string","can_be_empty":"1"},{"errno":"0","param_type":"in","name":"no_rule_exec","descr":"Dont execute rules","type":"bool","default_value":"0","internal_use":"1"},{"errno":"0","param_type":"in","name":"only_rule_exec","descr":"Only execute rules","type":"bool","default_value":"0","internal_use":"1"},{"errno":"0","param_type":"in","name":"additional_parameters","descr":"Additional parameters passed to rules","type":"string","internal_use":"1"},{"errno":"0","param_type":"in","name":"no_usertracking","descr":"Do not store information in usertracking","type":"bool","internal_use":"1"},{"errno":"0","param_type":"out","name":"errno","descr":"ID of the error"},{"errno":"0","param_type":"out","name":"errmsg","descr":"Error message"},{"errno":"0","param_type":"out","name":"msg","descr":"Message, information about service"},{"errno":"0","param_type":"out","name":"severity","descr":"severity of the error"},{"errno":"0","param_type":"out","name":"parameters","descr":"Missing parameters"},{"errno":"0","param_type":"out","name":"param_format","descr":"format of the incorrect parameter"},{"errno":"0","param_type":"out","name":"param_value","descr":"value of the incorrect parameter"},{"errno":"0","param_type":"out","name":"ret_oid","descr":"Return oid"}]
+--------------------------------------
+Test = OK
 ================================
 TEST AUTO
 ================================
@@ -74,52 +81,52 @@ Answer:
 [{"errno":"0","description":"Find free subnet"},{"errno":"0","mandatory_params":"(prefix || size)"},{"errno":"0","param_type":"in","name":"site_id","type":">0","descr":"Space ID"},{"errno":"0","param_type":"in","name":"prefix","type":"ipv4_prefix","descr":"Subnet prefix"},{"errno":"0","param_type":"in","name":"size","type":">=0","descr":"Subnet size"},{"errno":"0","param_type":"in","name":"max_find","type":">0","descr":"Max result"},{"errno":"0","param_type":"in","name":"begin_addr","type":"ipv4_addr","descr":"Start address"},{"errno":"0","param_type":"in","name":"end_addr","type":"ipv4_addr","descr":"End address"},{"errno":"0","param_type":"in","name":"WHERE","descr":"WHERE"},{"errno":"0","param_type":"in","name":"block_id","type":">0","descr":"Block ID"},{"errno":"0","param_type":"in","name":"use_searched_path","type":"bool","descr":"Search in path","default_value":"0"},{"errno":"0","param_type":"out","name":"start_ip_addr","value":"Start IP addr (hex)"},{"errno":"0","param_type":"out","name":"block_name","value":"Block name"},{"errno":"0","param_type":"out","name":"find_type","value":"Find type (subnet)","internal_use":"1"},{"errno":"0","param_type":"out","name":"cost","value":"Cost"},{"errno":"0","param_type":"out","name":"block_id","value":"Block ID"},{"errno":"0","param_type":"out","name":"site_id","value":"Space ID"}]
 --------------------------------
 --------------------------------
-Sub Test: ip_site_update
+Sub Test: ip_pool6_add
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
 TEST: ***
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool6_id\/start_addr\/end_addr","service_name":"ip6_pool6_add","category":"ip6_pool6_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_pool_info
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ****
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter pool_id","parameters":"pool_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_subnet_read
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *****
+Answer: <Response [204]>
+Answer: 204
+Answer:
+
+--------------------------------
+--------------------------------
+Sub Test: ip_site_update
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ******
 Answer: <Response [201]>
 Answer: 201
 Answer:
 [{"ret_oid":"12"}]
 --------------------------------
 --------------------------------
-Sub Test: ip_alias_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_name_id\/name","service_name":"ip_alias_delete","category":"ip_alias_delete"}
---------------------------------
---------------------------------
-Sub Test: ip_site_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****
-Answer: <Response [400]>
-Answer: 400
-Answer:
-[{"errno":"4","errmsg":"Missing parameter site_id","parameters":"site_id"}]
---------------------------------
---------------------------------
-Sub Test: ip_address6_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******
-Answer: <Response [400]>
-Answer: 400
-Answer:
-[{"errno":"4","errmsg":"Missing parameter ip6_id","parameters":"ip6_id"}]
---------------------------------
---------------------------------
-Sub Test: ip_subnet_info
+Sub Test: ip_address_list
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
 TEST: *******
-Answer: <Response [400]>
-Answer: 400
+Answer: <Response [204]>
+Answer: 204
 Answer:
-[{"errno":"4","errmsg":"Missing parameter subnet_id","parameters":"subnet_id"}]
+
 --------------------------------
 --------------------------------
-Sub Test: ip_address6_list
+Sub Test: ip_pool_read
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
 TEST: ********
 Answer: <Response [204]>
@@ -128,45 +135,243 @@ Answer:
 
 --------------------------------
 --------------------------------
-Sub Test: ip_pool_update
+Sub Test: ip_pool6_read
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
 TEST: *********
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool_id\/start_addr\/end_addr\/pool_size","service_name":"ip_pool_add","category":"ip_pool_add"}
---------------------------------
---------------------------------
-Sub Test: ip_subnet_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********
-Answer: <Response [200]>
-Answer: 200
-Answer:
-[{"errno":"0","total":"0"}]
---------------------------------
---------------------------------
-Sub Test: ip_pool_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********
 Answer: <Response [204]>
 Answer: 204
 Answer:
 
 --------------------------------
 --------------------------------
-Sub Test: ip_address6_update
+Sub Test: ip_subnet_create
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: **********
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet_id\/subnet_addr\/subnet_end_addr\/subnet_mask\/subnet_size\/subnet_prefix","service_name":"ip_subnet_add","category":"ip_subnet_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_site_read
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ***********
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","site_is_template":"0","site_id":"12","tree_level":"0","tree_path":"site_pytohn_lib_test#","tree_id_path":"#12#","site_is_default":"0","site_name":"site_pytohn_lib_test","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"11","tree_level":"0","tree_path":"sit_pytohn_lib_test#","tree_id_path":"#11#","site_is_default":"0","site_name":"sit_pytohn_lib_test","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"7","tree_level":"0","tree_path":"toto#","tree_id_path":"#7#","site_is_default":"0","site_name":"toto","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"10","tree_level":"0","tree_path":"toto3#","tree_id_path":"#10#","site_is_default":"0","site_name":"toto3","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"9","tree_level":"0","tree_path":"toto2#","tree_id_path":"#9#","site_is_default":"0","site_name":"toto2","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"8","tree_level":"0","tree_path":"toto1#","tree_id_path":"#8#","site_is_default":"0","site_name":"toto1","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"4","tree_level":"0","tree_path":"site2#","tree_id_path":"#4#","site_is_default":"0","site_name":"site2","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,4&rev_dns_view_name=real_site,4&use_ipam_name=real_site,4&ipv6_mapping=real_site,4&dns_id=real_site,4&rev_dns_id=real_site,4&dns_update=real_site,4&dhcp_failover_name=real_site,4&dhcpstatic=real_site,4","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"3","tree_level":"0","tree_path":"site1#","tree_id_path":"#3#","site_is_default":"0","site_name":"site1","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"2","tree_level":"0","tree_path":"Local#","tree_id_path":"#2#","site_is_default":"1","site_name":"Local","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"5","tree_level":"1","tree_path":"site1##site11","tree_id_path":"#3#5#","site_is_default":"0","site_name":"site11","site_description":"","parent_site_id":"3","parent_site_name":"site1","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=inherited,propagate&rev_dns_view_name=inherited,propagate&use_ipam_name=inherited,propagate&ipv6_mapping=inherited,propagate&dns_id=inherited,propagate&rev_dns_id=inherited,propagate&dns_update=inherited,propagate&dhcp_failover_name=inherited,propagate&dhcpstatic=inherited,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","parent_site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate"},{"errno":"0","site_is_template":"0","site_id":"6","tree_level":"1","tree_path":"site1##site12","tree_id_path":"#3#6#","site_is_default":"0","site_name":"site12","site_description":"","parent_site_id":"3","parent_site_name":"site1","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=inherited,propagate&rev_dns_view_name=inherited,propagate&use_ipam_name=inherited,propagate&ipv6_mapping=inherited,propagate&dns_id=inherited,propagate&rev_dns_id=inherited,propagate&dns_update=inherited,propagate&dhcp_failover_name=inherited,propagate&dhcpstatic=inherited,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","parent_site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_address_update
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
 TEST: ************
 Answer: <Response [400]>
 Answer: 400
 Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_id\/hostaddr","service_name":"ip6_address6_add","category":"ip6_address6_add"}
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_id\/hostaddr","service_name":"ip_add","category":"ip_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_address_read
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *************
+Answer: <Response [204]>
+Answer: 204
+Answer:
+
+--------------------------------
+--------------------------------
+Sub Test: ip_address6_delete
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: **************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_id\/hostaddr","service_name":"ip6_address6_delete","category":"ip6_address6_delete"}
+--------------------------------
+--------------------------------
+Sub Test: ip_address_count
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ***************
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","total":"0","count0":"0","count1":"0"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_alias6_add
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ****************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_name_id\/ip6_name","service_name":"ip6_alias_add","category":"ip6_alias_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_alias_add
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *****************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_name_id\/ip_name","service_name":"ip_alias_add","category":"ip_alias_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_pool_count
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ******************
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","total":"0"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_site_info
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *******************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter site_id","parameters":"site_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_address6_info
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ********************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter ip6_id","parameters":"ip6_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_address_create
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *********************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_id\/hostaddr","service_name":"ip_add","category":"ip_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_subnet_info
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: **********************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter subnet_id","parameters":"subnet_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_alias6_read
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ***********************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter ip6_id","parameters":"ip6_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_address6_list
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ************************
+Answer: <Response [204]>
+Answer: 204
+Answer:
+
+--------------------------------
+--------------------------------
+Sub Test: ip_pool6_create
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool6_id\/start_addr\/end_addr","service_name":"ip6_pool6_add","category":"ip6_pool6_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_address_info
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: **************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter ip_id","parameters":"ip_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_alias_delete
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ***************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_name_id\/name","service_name":"ip_alias_delete","category":"ip_alias_delete"}
+--------------------------------
+--------------------------------
+Sub Test: ip_alias_read
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ****************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter ip_id","parameters":"ip_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_pool_update
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *****************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool_id\/start_addr\/end_addr\/pool_size","service_name":"ip_pool_add","category":"ip_pool_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_subnet_delete
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ******************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet_id\/subnet_addr\/subnet_end_addr\/subnet_mask\/subnet_size\/subnet_prefix","service_name":"ip_subnet_delete","category":"ip_subnet_delete"}
+--------------------------------
+--------------------------------
+Sub Test: ip_site_list
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *******************************
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","site_is_template":"0","site_id":"12","tree_level":"0","tree_path":"site_pytohn_lib_test#","tree_id_path":"#12#","site_is_default":"0","site_name":"site_pytohn_lib_test","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"11","tree_level":"0","tree_path":"sit_pytohn_lib_test#","tree_id_path":"#11#","site_is_default":"0","site_name":"sit_pytohn_lib_test","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"7","tree_level":"0","tree_path":"toto#","tree_id_path":"#7#","site_is_default":"0","site_name":"toto","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"10","tree_level":"0","tree_path":"toto3#","tree_id_path":"#10#","site_is_default":"0","site_name":"toto3","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"9","tree_level":"0","tree_path":"toto2#","tree_id_path":"#9#","site_is_default":"0","site_name":"toto2","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"8","tree_level":"0","tree_path":"toto1#","tree_id_path":"#8#","site_is_default":"0","site_name":"toto1","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"4","tree_level":"0","tree_path":"site2#","tree_id_path":"#4#","site_is_default":"0","site_name":"site2","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,4&rev_dns_view_name=real_site,4&use_ipam_name=real_site,4&ipv6_mapping=real_site,4&dns_id=real_site,4&rev_dns_id=real_site,4&dns_update=real_site,4&dhcp_failover_name=real_site,4&dhcpstatic=real_site,4","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"3","tree_level":"0","tree_path":"site1#","tree_id_path":"#3#","site_is_default":"0","site_name":"site1","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"2","tree_level":"0","tree_path":"Local#","tree_id_path":"#2#","site_is_default":"1","site_name":"Local","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"5","tree_level":"1","tree_path":"site1##site11","tree_id_path":"#3#5#","site_is_default":"0","site_name":"site11","site_description":"","parent_site_id":"3","parent_site_name":"site1","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=inherited,propagate&rev_dns_view_name=inherited,propagate&use_ipam_name=inherited,propagate&ipv6_mapping=inherited,propagate&dns_id=inherited,propagate&rev_dns_id=inherited,propagate&dns_update=inherited,propagate&dhcp_failover_name=inherited,propagate&dhcpstatic=inherited,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","parent_site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate"},{"errno":"0","site_is_template":"0","site_id":"6","tree_level":"1","tree_path":"site1##site12","tree_id_path":"#3#6#","site_is_default":"0","site_name":"site12","site_description":"","parent_site_id":"3","parent_site_name":"site1","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=inherited,propagate&rev_dns_view_name=inherited,propagate&use_ipam_name=inherited,propagate&ipv6_mapping=inherited,propagate&dns_id=inherited,propagate&rev_dns_id=inherited,propagate&dns_update=inherited,propagate&dhcp_failover_name=inherited,propagate&dhcpstatic=inherited,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","parent_site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_subnet_update
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ********************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet_id\/subnet_addr\/subnet_end_addr\/subnet_mask\/subnet_size\/subnet_prefix","service_name":"ip_subnet_add","category":"ip_subnet_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_address_add
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *********************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_id\/hostaddr","service_name":"ip_add","category":"ip_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_subnet6_create
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: **********************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet6_id\/subnet6_addr\/subnet6_end_addr\/subnet6_prefix","service_name":"ip6_subnet6_add","category":"ip6_subnet6_add"}
 --------------------------------
 --------------------------------
 Sub Test: ip_address6_find_free
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************
+TEST: ***********************************
 Answer: <Response [200]>
 Answer: 200
 Answer:
@@ -175,241 +380,124 @@ Answer:
 --------------------------------
 Sub Test: ip_subnet6_add
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************
+TEST: ************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
 {"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet6_id\/subnet6_addr\/subnet6_end_addr\/subnet6_prefix","service_name":"ip6_subnet6_add","category":"ip6_subnet6_add"}
 --------------------------------
 --------------------------------
-Sub Test: ip_site_list
+Sub Test: ip_address6_create
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************
-Answer: <Response [200]>
-Answer: 200
-Answer:
-[{"errno":"0","site_is_template":"0","site_id":"12","tree_level":"0","tree_path":"site_pytohn_lib_test#","tree_id_path":"#12#","site_is_default":"0","site_name":"site_pytohn_lib_test","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"11","tree_level":"0","tree_path":"sit_pytohn_lib_test#","tree_id_path":"#11#","site_is_default":"0","site_name":"sit_pytohn_lib_test","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"7","tree_level":"0","tree_path":"toto#","tree_id_path":"#7#","site_is_default":"0","site_name":"toto","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"10","tree_level":"0","tree_path":"toto3#","tree_id_path":"#10#","site_is_default":"0","site_name":"toto3","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"9","tree_level":"0","tree_path":"toto2#","tree_id_path":"#9#","site_is_default":"0","site_name":"toto2","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"8","tree_level":"0","tree_path":"toto1#","tree_id_path":"#8#","site_is_default":"0","site_name":"toto1","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"4","tree_level":"0","tree_path":"site2#","tree_id_path":"#4#","site_is_default":"0","site_name":"site2","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,4&rev_dns_view_name=real_site,4&use_ipam_name=real_site,4&ipv6_mapping=real_site,4&dns_id=real_site,4&rev_dns_id=real_site,4&dns_update=real_site,4&dhcp_failover_name=real_site,4&dhcpstatic=real_site,4","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"3","tree_level":"0","tree_path":"site1#","tree_id_path":"#3#","site_is_default":"0","site_name":"site1","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"2","tree_level":"0","tree_path":"Local#","tree_id_path":"#2#","site_is_default":"1","site_name":"Local","site_description":"","parent_site_id":"0","parent_site_name":"#","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"","site_class_parameters_properties":"","site_class_parameters_inheritance_source":"","parent_site_class_parameters":"","parent_site_class_parameters_properties":""},{"errno":"0","site_is_template":"0","site_id":"6","tree_level":"1","tree_path":"site1##site12","tree_id_path":"#3#6#","site_is_default":"0","site_name":"site12","site_description":"","parent_site_id":"3","parent_site_name":"site1","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=inherited,propagate&rev_dns_view_name=inherited,propagate&use_ipam_name=inherited,propagate&ipv6_mapping=inherited,propagate&dns_id=inherited,propagate&rev_dns_id=inherited,propagate&dns_update=inherited,propagate&dhcp_failover_name=inherited,propagate&dhcpstatic=inherited,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","parent_site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate"},{"errno":"0","site_is_template":"0","site_id":"5","tree_level":"1","tree_path":"site1##site11","tree_id_path":"#3#5#","site_is_default":"0","site_name":"site11","site_description":"","parent_site_id":"3","parent_site_name":"site1","site_class_name":"","parent_site_class_name":"","row_enabled":"1","multistatus":"","site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","site_class_parameters_properties":"dns_view_name=inherited,propagate&rev_dns_view_name=inherited,propagate&use_ipam_name=inherited,propagate&ipv6_mapping=inherited,propagate&dns_id=inherited,propagate&rev_dns_id=inherited,propagate&dns_update=inherited,propagate&dhcp_failover_name=inherited,propagate&dhcpstatic=inherited,propagate","site_class_parameters_inheritance_source":"dns_view_name=real_site,3&rev_dns_view_name=real_site,3&use_ipam_name=real_site,3&ipv6_mapping=real_site,3&dns_id=real_site,3&rev_dns_id=real_site,3&dns_update=real_site,3&dhcp_failover_name=real_site,3&dhcpstatic=real_site,3","parent_site_class_parameters":"dns_view_name=0&rev_dns_view_name=0&use_ipam_name=0&ipv6_mapping=0&dns_id=0&rev_dns_id=0&dns_update=0&dhcp_failover_name=0&dhcpstatic=0","parent_site_class_parameters_properties":"dns_view_name=set,propagate&rev_dns_view_name=set,propagate&use_ipam_name=set,propagate&ipv6_mapping=set,propagate&dns_id=set,propagate&rev_dns_id=set,propagate&dns_update=set,propagate&dhcp_failover_name=set,propagate&dhcpstatic=set,propagate"}]
---------------------------------
---------------------------------
-Sub Test: ip_site_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************
+TEST: *************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
-{"errno":"5061","errmsg":"Space name already exist","severity":"error","site_name":"site_pytohn_lib_test","category":"ip_site_add"}
---------------------------------
---------------------------------
-Sub Test: ip_subnet_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet_id\/subnet_addr\/subnet_end_addr\/subnet_mask\/subnet_size\/subnet_prefix","service_name":"ip_subnet_add","category":"ip_subnet_add"}
---------------------------------
---------------------------------
-Sub Test: ip_pool_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool_id\/start_addr\/end_addr\/pool_size","service_name":"ip_pool_delete","category":"ip_pool_delete"}
---------------------------------
---------------------------------
-Sub Test: ip_address6_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *******************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_id\/hostaddr","service_name":"ip6_address6_delete","category":"ip6_address6_delete"}
---------------------------------
---------------------------------
-Sub Test: ip_pool6_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ********************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-[{"errno":"4","errmsg":"Missing parameter pool6_id","parameters":"pool6_id"}]
---------------------------------
---------------------------------
-Sub Test: ip_site_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *********************
-Answer: <Response [200]>
-Answer: 200
-Answer:
-[{"ret_oid":"12"}]
---------------------------------
---------------------------------
-Sub Test: ip_pool6_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool6_id\/start_addr\/end_addr","service_name":"ip6_pool6_add","category":"ip6_pool6_add"}
---------------------------------
---------------------------------
-Sub Test: ip_address_find_free
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********************
-Answer: <Response [200]>
-Answer: 200
-Answer:
-[{"errno":"0","description":"Find free address"},{"errno":"0","mandatory_params":"(subnet_id || pool_id || parent_subnet_id)"},{"errno":"0","param_type":"in","name":"subnet_id","type":">0","descr":"Subnet ID"},{"errno":"0","param_type":"in","name":"parent_subnet_id","type":">0","descr":"Parent subnet ID"},{"errno":"0","param_type":"in","name":"pool_id","type":">0","descr":"Pool ID"},{"errno":"0","param_type":"in","name":"max_find","type":">0","descr":"Max result","default_value":"10"},{"errno":"0","param_type":"in","name":"WHERE","descr":"WHERE"},{"errno":"0","param_type":"in","name":"begin_addr","type":"ipv4_addr","descr":"start IP addr"},{"errno":"0","param_type":"in","name":"end_addr","type":"ipv4_addr","descr":"end IP addr"},{"errno":"0","param_type":"in","name":"pool_class_name","type":"string","descr":"Pool class name"},{"errno":"0","param_type":"in","name":"subnet_class_name","type":"string","descr":"Subnet class name"},{"errno":"0","param_type":"out","name":"ip_addr","value":"IP addr (hex)"},{"errno":"0","param_type":"out","name":"hostaddr","value":"IP addr (dec)"},{"errno":"0","param_type":"out","name":"site_id","value":"site ID"},{"errno":"0","param_type":"out","name":"site_name","value":"site name"},{"errno":"0","param_type":"out","name":"subnet_id","value":"Subnet ID"},{"errno":"0","param_type":"out","name":"subnet_name","value":"Subnet name"},{"errno":"0","param_type":"out","name":"pool_id","value":"Pool ID"},{"errno":"0","param_type":"out","name":"pool_name","value":"Pool name"}]
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-[{"errno":"4","errmsg":"Missing parameter subnet6_id","parameters":"subnet6_id"}]
---------------------------------
---------------------------------
-Sub Test: ip_subnet6_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************************
-Answer: <Response [200]>
-Answer: 200
-Answer:
-[{"errno":"0","total":"0"}]
---------------------------------
---------------------------------
-Sub Test: ip_alias6_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_name_id\/ip6_name","service_name":"ip6_alias_delete","category":"ip6_alias_delete"}
---------------------------------
---------------------------------
-Sub Test: ip_site_create
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************************
-Answer: <Response [201]>
-Answer: 201
-Answer:
-[{"ret_oid":"12"}]
---------------------------------
---------------------------------
-Sub Test: ip_pool6_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool6_id\/start_addr\/end_addr","service_name":"ip6_pool6_add","category":"ip6_pool6_add"}
---------------------------------
---------------------------------
-Sub Test: ip_address_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************************
-Answer: <Response [204]>
-Answer: 204
-Answer:
-
---------------------------------
---------------------------------
-Sub Test: ip_alias_list
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-[{"errno":"4","errmsg":"Missing parameter ip_id","parameters":"ip_id"}]
---------------------------------
---------------------------------
-Sub Test: ip_address_update
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *******************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_id\/hostaddr","service_name":"ip_add","category":"ip_add"}
---------------------------------
---------------------------------
-Sub Test: ip_address_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ********************************
-Answer: <Response [200]>
-Answer: 200
-Answer:
-[{"errno":"0","total":"0","count0":"0","count1":"0"}]
---------------------------------
---------------------------------
-Sub Test: ip_pool_count
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *********************************
-Answer: <Response [200]>
-Answer: 200
-Answer:
-[{"errno":"0","total":"0"}]
---------------------------------
---------------------------------
-Sub Test: ip_address_info
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-[{"errno":"4","errmsg":"Missing parameter ip_id","parameters":"ip_id"}]
---------------------------------
---------------------------------
-Sub Test: ip_subnet_delete
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet_id\/subnet_addr\/subnet_end_addr\/subnet_mask\/subnet_size\/subnet_prefix","service_name":"ip_subnet_delete","category":"ip_subnet_delete"}
---------------------------------
---------------------------------
-Sub Test: ip_address_add
-Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ************************************
-Answer: <Response [400]>
-Answer: 400
-Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip_id\/hostaddr","service_name":"ip_add","category":"ip_add"}
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_id\/hostaddr","service_name":"ip6_address6_add","category":"ip6_address6_add"}
 --------------------------------
 --------------------------------
 Sub Test: ip_subnet6_find_free
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************************************
+TEST: **************************************
 Answer: <Response [200]>
 Answer: 200
 Answer:
 [{"errno":"0","description":"Find free subnet6"},{"errno":"0","mandatory_params":"(prefix)"},{"errno":"0","param_type":"in","name":"site_id","type":">0","descr":"Space ID"},{"errno":"0","param_type":"in","name":"prefix","type":"ipv6_prefix","descr":"Subnet prefix"},{"errno":"0","param_type":"in","name":"max_find","type":">0","descr":"Max result"},{"errno":"0","param_type":"in","name":"begin_addr","type":"ipv6_addr","descr":"Start address"},{"errno":"0","param_type":"in","name":"end_addr","type":"ipv6_addr","descr":"End address"},{"errno":"0","param_type":"in","name":"WHERE","descr":"WHERE"},{"errno":"0","param_type":"in","name":"block6_id","type":">0","descr":"Block ID"},{"errno":"0","param_type":"in","name":"use_searched_path","type":"bool","descr":"Search in path","default_value":"0"},{"errno":"0","param_type":"out","name":"start_ip6_addr","value":"Start IP addr (hex)"},{"errno":"0","param_type":"out","name":"block6_name","value":"Block name"},{"errno":"0","param_type":"out","name":"find_type","value":"Find type (subnet)","internal_use":"1"},{"errno":"0","param_type":"out","name":"cost","value":"Cost"},{"errno":"0","param_type":"out","name":"block6_id","value":"Block ID"},{"errno":"0","param_type":"out","name":"site_id","value":"Space ID"}]
 --------------------------------
 --------------------------------
-Sub Test: ip_pool6_count
+Sub Test: ip_subnet6_read
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************************************
+TEST: ***************************************
+Answer: <Response [204]>
+Answer: 204
+Answer:
+
+--------------------------------
+--------------------------------
+Sub Test: ip_subnet_count
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ****************************************
 Answer: <Response [200]>
 Answer: 200
 Answer:
 [{"errno":"0","total":"0"}]
 --------------------------------
 --------------------------------
+Sub Test: ip_address6_update
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *****************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_id\/hostaddr","service_name":"ip6_address6_add","category":"ip6_address6_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_site_add
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ******************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"5061","errmsg":"Space name already exist","severity":"error","site_name":"site_pytohn_lib_test","category":"ip_site_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_alias_list
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *******************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter ip_id","parameters":"ip_id"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_pool_list
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ********************************************
+Answer: <Response [204]>
+Answer: 204
+Answer:
+
+--------------------------------
+--------------------------------
+Sub Test: ip_pool6_count
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *********************************************
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","total":"0"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_pool_delete
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: **********************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool_id\/start_addr\/end_addr\/pool_size","service_name":"ip_pool_delete","category":"ip_pool_delete"}
+--------------------------------
+--------------------------------
 Sub Test: ip_address6_count
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************************************
+TEST: ***********************************************
 Answer: <Response [200]>
 Answer: 200
 Answer:
 [{"errno":"0","total":"0","count0":"0","count1":"0"}]
 --------------------------------
 --------------------------------
+Sub Test: ip_pool6_info
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ************************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+[{"errno":"4","errmsg":"Missing parameter pool6_id","parameters":"pool6_id"}]
+--------------------------------
+--------------------------------
 Sub Test: ip_subnet_add
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************************************
+TEST: *************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
@@ -418,7 +506,7 @@ Answer:
 --------------------------------
 Sub Test: ip_subnet6_update
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************************************
+TEST: **************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
@@ -427,7 +515,7 @@ Answer:
 --------------------------------
 Sub Test: ip_pool6_delete
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ******************************************
+TEST: ***************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
@@ -436,16 +524,43 @@ Answer:
 --------------------------------
 Sub Test: ip_alias6_list
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *******************************************
+TEST: ****************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
 [{"errno":"4","errmsg":"Missing parameter ip6_id","parameters":"ip6_id"}]
 --------------------------------
 --------------------------------
-Sub Test: ip_alias_add
+Sub Test: ip_site_delete
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ********************************************
+TEST: *****************************************************
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"ret_oid":"12"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_address6_read
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ******************************************************
+Answer: <Response [204]>
+Answer: 204
+Answer:
+
+--------------------------------
+--------------------------------
+Sub Test: ip_pool6_update
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *******************************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool6_id\/start_addr\/end_addr","service_name":"ip6_pool6_add","category":"ip6_pool6_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_alias_create
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ********************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
@@ -454,7 +569,7 @@ Answer:
 --------------------------------
 Sub Test: ip_subnet6_list
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *********************************************
+TEST: *********************************************************
 Answer: <Response [204]>
 Answer: 204
 Answer:
@@ -463,43 +578,43 @@ Answer:
 --------------------------------
 Sub Test: ip_subnet6_delete
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **********************************************
+TEST: **********************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
 {"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"subnet6_id\/subnet6_addr\/subnet6_end_addr\/subnet6_size\/subnet6_prefix","service_name":"ip6_subnet6_delete","category":"ip6_subnet6_delete"}
 --------------------------------
 --------------------------------
-Sub Test: ip_alias6_add
+Sub Test: ip_address_find_free
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***********************************************
-Answer: <Response [400]>
-Answer: 400
+TEST: ***********************************************************
+Answer: <Response [200]>
+Answer: 200
 Answer:
-{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_name_id\/ip6_name","service_name":"ip6_alias_add","category":"ip6_alias_add"}
+[{"errno":"0","description":"Find free address"},{"errno":"0","mandatory_params":"(subnet_id || pool_id || parent_subnet_id)"},{"errno":"0","param_type":"in","name":"subnet_id","type":">0","descr":"Subnet ID"},{"errno":"0","param_type":"in","name":"parent_subnet_id","type":">0","descr":"Parent subnet ID"},{"errno":"0","param_type":"in","name":"pool_id","type":">0","descr":"Pool ID"},{"errno":"0","param_type":"in","name":"max_find","type":">0","descr":"Max result","default_value":"10"},{"errno":"0","param_type":"in","name":"WHERE","descr":"WHERE"},{"errno":"0","param_type":"in","name":"begin_addr","type":"ipv4_addr","descr":"start IP addr"},{"errno":"0","param_type":"in","name":"end_addr","type":"ipv4_addr","descr":"end IP addr"},{"errno":"0","param_type":"in","name":"pool_class_name","type":"string","descr":"Pool class name"},{"errno":"0","param_type":"in","name":"subnet_class_name","type":"string","descr":"Subnet class name"},{"errno":"0","param_type":"out","name":"ip_addr","value":"IP addr (hex)"},{"errno":"0","param_type":"out","name":"hostaddr","value":"IP addr (dec)"},{"errno":"0","param_type":"out","name":"site_id","value":"site ID"},{"errno":"0","param_type":"out","name":"site_name","value":"site name"},{"errno":"0","param_type":"out","name":"subnet_id","value":"Subnet ID"},{"errno":"0","param_type":"out","name":"subnet_name","value":"Subnet name"},{"errno":"0","param_type":"out","name":"pool_id","value":"Pool ID"},{"errno":"0","param_type":"out","name":"pool_name","value":"Pool name"}]
 --------------------------------
 --------------------------------
 Sub Test: ip_subnet_list
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ************************************************
+TEST: ************************************************************
 Answer: <Response [204]>
 Answer: 204
 Answer:
 
 --------------------------------
 --------------------------------
-Sub Test: ip_pool_info
+Sub Test: ip_subnet6_info
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *************************************************
+TEST: *************************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
-[{"errno":"4","errmsg":"Missing parameter pool_id","parameters":"pool_id"}]
+[{"errno":"4","errmsg":"Missing parameter subnet6_id","parameters":"subnet6_id"}]
 --------------------------------
 --------------------------------
 Sub Test: ip_address_delete
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: **************************************************
+TEST: **************************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
@@ -508,32 +623,77 @@ Answer:
 --------------------------------
 Sub Test: ip_site_count
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ***************************************************
+TEST: ***************************************************************
 Answer: <Response [200]>
 Answer: 200
 Answer:
-[{"errno":"0","total":"11"}]
+[{"errno":"0","total":"10"}]
 --------------------------------
 --------------------------------
-Sub Test: ip_pool_add
+Sub Test: ip_alias6_create
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: ****************************************************
+TEST: ****************************************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_name_id\/ip6_name","service_name":"ip6_alias_add","category":"ip6_alias_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_pool_create
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *****************************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
 {"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool_id\/start_addr\/end_addr\/pool_size","service_name":"ip_pool_add","category":"ip_pool_add"}
 --------------------------------
 --------------------------------
+Sub Test: ip_subnet6_count
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ******************************************************************
+Answer: <Response [200]>
+Answer: 200
+Answer:
+[{"errno":"0","total":"0"}]
+--------------------------------
+--------------------------------
+Sub Test: ip_alias6_delete
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *******************************************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_name_id\/ip6_name","service_name":"ip6_alias_delete","category":"ip6_alias_delete"}
+--------------------------------
+--------------------------------
+Sub Test: ip_pool_add
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: ********************************************************************
+Answer: <Response [400]>
+Answer: 400
+Answer:
+{"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"pool_id\/start_addr\/end_addr\/pool_size","service_name":"ip_pool_add","category":"ip_pool_add"}
+--------------------------------
+--------------------------------
+Sub Test: ip_site_create
+Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
+TEST: *********************************************************************
+Answer: <Response [201]>
+Answer: 201
+Answer:
+[{"ret_oid":"12"}]
+--------------------------------
+--------------------------------
 Sub Test: ip_address6_add
 Parameters: {'site_name': 'site_pytohn_lib_test', 'description': 'test site'}
-TEST: *****************************************************
+TEST: **********************************************************************
 Answer: <Response [400]>
 Answer: 400
 Answer:
 {"errno":"4","errmsg":"Missing parameter","severity":"error","parameters":"ip6_id\/hostaddr","service_name":"ip6_address6_add","category":"ip6_address6_add"}
 --------------------------------
 RESULTAT
-53 services checked / 53 total services
+70 services checked / 70 total services
 END of TEST AUTO
 END => test.py
 -------------------------------------------------------------------------
@@ -544,10 +704,10 @@ END => test.py
 platform linux2 -- Python 2.7.15, pytest-4.3.0, py-1.8.0, pluggy-0.9.0
 rootdir: /home/gcugat/Repos/SOLIDserverRest, inifile:
 plugins: cov-2.6.1
-collected 6 items
+collected 7 items
 
-tests/test_simple.py ....                                                [ 66%]
-tests/tests.py ..                                                        [100%]
+tests/test_simple.py ....                                                [ 57%]
+tests/tests.py ...                                                       [100%]
 
 =============================== warnings summary ===============================
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
@@ -603,7 +763,25 @@ lib/python2.7/site-packages/urllib3/connectionpool.py:847
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
 lib/python2.7/site-packages/urllib3/connectionpool.py:847
-tests/tests.py::test_auto_dico
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+lib/python2.7/site-packages/urllib3/connectionpool.py:847
+tests/tests.py::test_readme_service
   /home/gcugat/Repos/SOLIDserverRest/lib/python2.7/site-packages/urllib3/connectionpool.py:847: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
     InsecureRequestWarning)
 
@@ -613,11 +791,11 @@ tests/tests.py::test_auto_dico
 Name                                 Stmts   Miss Branch BrPart  Cover
 ----------------------------------------------------------------------
 SOLIDserverRest/Exception.py            14      1      0      0    93%
-SOLIDserverRest/SOLIDserverRest.py      96     11     24      7    85%
+SOLIDserverRest/SOLIDserverRest.py      96     10     24      6    87%
 SOLIDserverRest/__init__.py              8      3      2      1    60%
 SOLIDserverRest/mapper.py                4      0      0      0   100%
 ----------------------------------------------------------------------
-TOTAL                                  122     15     26      8    84%
+TOTAL                                  122     14     26      7    86%
 
-==================== 6 passed, 54 warnings in 6.93 seconds =====================
+==================== 7 passed, 72 warnings in 8.22 seconds =====================
 -------------------------------------------------------------------------

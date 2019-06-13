@@ -15,5 +15,10 @@ env36/**
 env37/**
 #Files
 /tests/data.py
+<<<<<<< HEAD
 coverage.xml
 **/*~
+=======
+report.txt
+/docs/auto_doc.py
+>>>>>>> next-version

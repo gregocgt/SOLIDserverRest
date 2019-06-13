@@ -11,6 +11,7 @@ sys.path.append(os.getcwd())
 from SOLIDserverRest import *
 from SOLIDserverRest.Exception import *
 
+<<<<<<< HEAD
 if sys.version_info[0] == 2:
     try:
         from data import *
@@ -28,21 +29,38 @@ else:
 #SSD_HOST = "192.168.56.254"
 #SSD_APIUSER = "api"
 #SSD_APIPWD = "apiadmin"
+=======
+SDS_HOST = "192.168.56.254"
+SDS_APIUSER = "api"
+SDS_APIPWD = "admin"
+>>>>>>> next-version
 
 
 def test_setup_init():
     """  simple connection creation """
+<<<<<<< HEAD
     testR = SOLIDserverRest(SERVER)
+=======
+    testR = SOLIDserverRest(SDS_HOST)
+>>>>>>> next-version
     testR.clean()
 
 
 def test_setup_woinit():
     """  set connection mode on unexisting connection """
+<<<<<<< HEAD
     con = SOLIDserverRest(SERVER)
     con.clean()
     try:
         con.use_native_ssd(user=USER, password=PWD)
     except SSDInitError:
+=======
+    con = SOLIDserverRest(SDS_HOST)
+    con.clean()
+    try:
+        con.use_native_sds(user=SDS_APIUSER, password=SDS_APIPWD)
+    except SDSInitError:
+>>>>>>> next-version
         return
 
     con.clean()
@@ -50,9 +68,15 @@ def test_setup_woinit():
 
 
 def test_setup_simple():
+<<<<<<< HEAD
     """ simple setup of SSD native connection """
     con = SOLIDserverRest(SERVER)
     con.use_native_ssd(user=USER, password=PWD)
+=======
+    """ simple setup of SDS native connection """
+    con = SOLIDserverRest(SDS_HOST)
+    con.use_native_sds(user=SDS_APIUSER, password=SDS_APIPWD)
+>>>>>>> next-version
 
     s = con.get_status()
     if 'python_version' not in s:
@@ -66,9 +90,15 @@ def test_setup_simple():
 
 
 def test_native_simple_call():
+<<<<<<< HEAD
     """ simple call with SSD native connection """
     con = SOLIDserverRest(SERVER)
     con.use_native_ssd(user=USER, password=PWD)
+=======
+    """ simple call with SDS native connection """
+    con = SOLIDserverRest(SDS_HOST)
+    con.use_native_sds(user=SDS_APIUSER, password=SDS_APIPWD)
+>>>>>>> next-version
 
     try:
         answer = con.query('ip_site_count',
@@ -80,7 +110,7 @@ def test_native_simple_call():
             logging.error(answer.status_code)
             assert False, "native call failed"
 
-    except SSDError:
+    except SDSError:
         None
 
 # ---------------------------------------------

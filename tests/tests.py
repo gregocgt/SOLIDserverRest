@@ -35,6 +35,7 @@ def test_no_server():
     logging.info('TEST: Test no server')
     try:
         testR = SOLIDserverRest(None)
+<<<<<<< HEAD
         testR.use_native_ssd('soliduser', 'solidpass')
         logging.info('Test = NO-OK')
 
@@ -60,6 +61,40 @@ def fct_auto_dico(auth=SOLIDserverRest.CNX_NATIVE, srv=SERVER, options=False):
     logging.info('TESTS AUTO')
     logging.info('================================')
     testR = SOLIDserverRest(srv)
+=======
+        testR.use_native_sds('soliduser', 'solidpass')
+        print('Test = NO-OK')
+
+    except SDSError:
+        print('Test = OK')
+        None
+
+def test_readme_service():
+    print('TEST: Test Readme service')
+    testR = SOLIDserverRest(SERVER)
+    testR.use_native_sds(USER, PWD)
+    serviceR = 'ip_site_create'
+    parameters = PARAMETERS
+        
+    try:
+        answerR = testR.query(serviceR, parameters, documentation=True)
+        print('Answer: {}'.format(answerR))
+        print('Answer: {}'.format(answerR.status_code))
+        print('Answer:')
+        print(answerR.content)
+        print('--------------------------------------')
+        print('Test = OK')
+    
+    except SDSError:
+        None
+
+def test_auto_dico():
+    print('================================')
+    print('TEST AUTO')
+    print('================================')
+    testR = SOLIDserverRest(SERVER)
+    testR.use_native_sds(USER, PWD)
+>>>>>>> next-version
 
     try:
         if auth==SOLIDserverRest.CNX_NATIVE:
@@ -104,6 +139,7 @@ def fct_auto_dico(auth=SOLIDserverRest.CNX_NATIVE, srv=SERVER, options=False):
         logging.info(format(display_test))
             
         try:
+<<<<<<< HEAD
             answerR = testR.query(serviceR, parameters, option=options)
             logging.info('Answer: {}'.format(answerR))
             logging.info('Answer: {}'.format(answerR.status_code))
@@ -111,6 +147,15 @@ def fct_auto_dico(auth=SOLIDserverRest.CNX_NATIVE, srv=SERVER, options=False):
             logging.info(answerR.content)
         except SSDError:
             logging.info("error on SDS query in test_no_params")
+=======
+            answerR = testR.query(serviceR, parameters)
+            print('Answer: {}'.format(answerR))
+            print('Answer: {}'.format(answerR.status_code))
+            print('Answer:')
+            print(answerR.content)
+            #print(json.dumps(json.loads(answerR.content), indent=4, sort_keys=True, encoding="utf-8"))
+        except SDSError:
+>>>>>>> next-version
             None
 
         if method not in method_tested:
@@ -223,4 +268,11 @@ def test_options():
 if __name__ == '__main__':
     test_get_string()
 
+<<<<<<< HEAD
 logging.info('END => test.py')
+=======
+test_no_server()
+test_readme_service()
+test_auto_dico()
+print('END => test.py')
+>>>>>>> next-version
